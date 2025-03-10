@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = false }) => {
   // Add window width state for responsive design
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const [animationState, setAnimationState] = useState('closed');
   const isMobile = windowWidth <= 768;
 
   // Handle window resize for responsive design
@@ -19,6 +20,21 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
       };
     }
   }, []);
+
+  // Handle animation states when modal opens/closes
+  useEffect(() => {
+    if (isOpen) {
+      setAnimationState('opening');
+      const timer = setTimeout(() => setAnimationState('open'), 50);
+      return () => clearTimeout(timer);
+    } else {
+      if (animationState === 'open') {
+        setAnimationState('closing');
+        const timer = setTimeout(() => setAnimationState('closed'), 300);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [isOpen]);
 
   // Close modal when Escape key is pressed
   useEffect(() => {
@@ -40,7 +56,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  if (animationState === 'closed' && !isOpen) return null;
 
   // Determine the correct photo path based on whether it's a team member or leadership
   const photoPath = isTeamMember 
@@ -55,25 +71,34 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
         left: 0,
         right: 0,
         bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backdropFilter: 'blur(8px)',
+        WebkitBackdropFilter: 'blur(8px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1000,
-        padding: isMobile ? '10px' : '20px'
+        padding: isMobile ? '10px' : '20px',
+        opacity: animationState === 'opening' || animationState === 'closing' ? 0 : 1,
+        transition: 'opacity 0.3s ease-in-out',
       }}
       onClick={onClose}
     >
       <div className="modal-content" 
         style={{
           backgroundColor: 'white',
-          borderRadius: '8px',
-          maxWidth: isMobile ? '100%' : '800px',
+          borderRadius: '12px',
+          maxWidth: isMobile ? '100%' : '900px',
           width: '100%',
           maxHeight: '90vh',
           overflow: 'auto',
           position: 'relative',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.25)',
+          transform: animationState === 'opening' || animationState === 'closing' 
+            ? 'scale(0.95) translateY(20px)' 
+            : 'scale(1) translateY(0)',
+          opacity: animationState === 'opening' || animationState === 'closing' ? 0 : 1,
+          transition: 'transform 0.3s ease-out, opacity 0.3s ease-out',
         }}
         onClick={e => e.stopPropagation()}
       >
@@ -82,39 +107,59 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: '15px',
-            right: '15px',
-            background: 'none',
+            top: '20px',
+            right: '20px',
+            background: 'rgba(0, 0, 0, 0.05)',
             border: 'none',
-            fontSize: '24px',
+            borderRadius: '50%',
+            width: '36px',
+            height: '36px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '20px',
             cursor: 'pointer',
-            color: 'var(--color-primary)',
-            zIndex: 10
+            color: 'var(--color-text-dark)',
+            zIndex: 10,
+            transition: 'background-color 0.2s ease',
+            fontWeight: 'bold',
           }}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.1)'}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.05)'}
         >
           ×
         </button>
         
         <div className="modal-body" style={{ 
           display: 'flex', 
-          flexDirection: 'column', 
-          padding: isMobile ? '20px 15px' : '30px' 
+          flexDirection: isMobile ? 'column' : 'row',
+          padding: 0,
         }}>
-          <div className="modal-header" style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            marginBottom: '20px',
+          {/* Left column - Photo and basic info */}
+          <div className="modal-sidebar" style={{
+            width: isMobile ? '100%' : '35%',
+            backgroundColor: 'var(--color-primary)',
+            backgroundImage: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-dark))',
+            color: 'white',
+            borderTopLeftRadius: '12px',
+            borderBottomLeftRadius: isMobile ? '0' : '12px',
+            borderTopRightRadius: isMobile ? '12px' : '0',
+            padding: isMobile ? '30px 20px' : '40px 30px',
+            display: 'flex',
             flexDirection: 'column',
-            textAlign: 'center'
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
           }}>
             {photo && (
               <div className="modal-image" style={{ 
-                width: isMobile ? '120px' : '150px', 
-                height: isMobile ? '120px' : '150px', 
+                width: isMobile ? '140px' : '180px', 
+                height: isMobile ? '140px' : '180px', 
                 borderRadius: '50%', 
                 overflow: 'hidden',
-                marginBottom: '15px',
-                border: '3px solid var(--color-primary)'
+                marginBottom: '25px',
+                border: '4px solid rgba(255, 255, 255, 0.8)',
+                boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
               }}>
                 <img 
                   src={photoPath} 
@@ -135,33 +180,72 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
             
             <h2 style={{ 
               fontFamily: 'var(--font-secondary)', 
-              color: 'var(--color-text-dark)',
-              margin: '0 0 5px 0',
-              fontSize: isMobile ? 'var(--font-size-xl)' : 'var(--font-size-2xl)'
+              color: 'white',
+              margin: '0 0 8px 0',
+              fontSize: isMobile ? 'var(--font-size-xl)' : 'var(--font-size-2xl)',
+              fontWeight: '600',
+              letterSpacing: '0.5px',
             }}>
               {name}
             </h2>
             
             <h3 style={{ 
               fontFamily: 'var(--font-secondary)', 
-              color: 'var(--color-primary)',
-              margin: '0',
+              color: 'rgba(255, 255, 255, 0.9)',
+              margin: '0 0 20px 0',
               fontWeight: '500',
-              fontSize: 'var(--font-size-md)'
+              fontSize: 'var(--font-size-md)',
+              letterSpacing: '0.5px',
             }}>
               {title}
             </h3>
+            
+            <div style={{
+              width: '40px',
+              height: '4px',
+              backgroundColor: 'rgba(255, 255, 255, 0.6)',
+              margin: '0 auto',
+            }} />
           </div>
           
-          <div className="modal-bio" style={{ lineHeight: '1.6' }}>
-            <p style={{ 
-              fontFamily: 'var(--font-primary)', 
-              color: 'var(--color-text-dark)',
-              fontSize: 'var(--font-size-md)',
-              textAlign: isMobile ? 'left' : 'justify'
+          {/* Right column - Bio content */}
+          <div className="modal-content-area" style={{
+            width: isMobile ? '100%' : '65%',
+            padding: isMobile ? '30px 20px 40px' : '40px',
+            position: 'relative',
+          }}>
+            <div className="section-heading" style={{
+              marginBottom: '20px',
+              borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+              paddingBottom: '15px',
             }}>
-              {bio}
-            </p>
+              <h4 style={{
+                fontFamily: 'var(--font-secondary)',
+                fontSize: 'var(--font-size-lg)',
+                color: 'var(--color-primary)',
+                margin: 0,
+                fontWeight: '600',
+              }}>
+                Biography
+              </h4>
+            </div>
+            
+            <div className="modal-bio" style={{ 
+              lineHeight: '1.8',
+              maxHeight: isMobile ? 'auto' : '60vh',
+              overflowY: 'auto',
+              paddingRight: '10px',
+            }}>
+              <p style={{ 
+                fontFamily: 'var(--font-primary)', 
+                color: 'var(--color-text-dark)',
+                fontSize: 'var(--font-size-md)',
+                textAlign: 'left',
+                margin: 0,
+              }}>
+                {bio}
+              </p>
+            </div>
           </div>
         </div>
       </div>

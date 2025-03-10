@@ -20,12 +20,11 @@ const About = () => {
       />
       
       <div className="container">
-        <div className="section">
-          <h2 className="section-title">Our Mission</h2>
-          <p>The Centre for Digital Health and Precision Medicine (CDHPM) is dedicated to advancing healthcare through innovative digital technologies and precision medicine approaches.</p>
+        <div className="section text-left">
+          <h2 className="section-title ">Our Mission</h2>
+          <p>TThe Centre operates through two primary hubs based at The Apollo University in Chittoor, India, and at the British Heart Foundation Cardiovascular Research Centre at the University of Leicester in the United Kingdom. However, the Centre has a federated structure with its Faculty spread across the Apollo Hospitals network, The Apollo University and the University of Leicester as well amongst external partner organisations. This structure combines deep expertise and resources, driving our shared vision of a future where healthcare is personalized, data-driven, and transformative</p>
           
-          <h2 className="section-title mt-5">Our Vision</h2>
-          <p>To revolutionize healthcare delivery and patient outcomes by harnessing the power of digital health technologies, data analytics, and precision medicine to create personalized, effective, and accessible healthcare solutions.</p>
+          
         </div>
       </div>
     </motion.div>

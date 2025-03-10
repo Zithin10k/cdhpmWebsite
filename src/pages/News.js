@@ -13,7 +13,7 @@ const News = () => {
       <div className="container">
         <div style={{ padding: '2rem 0' }}>
           <h1>News</h1>
-          <p>Latest updates and announcements from CDHPM.</p>
+          <p> Pending.....</p>
         </div>
       </div>
     </motion.div>

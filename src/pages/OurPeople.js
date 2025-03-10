@@ -132,6 +132,20 @@ const OurPeople = () => {
     }
     
     // Desktop view (above 1024px)
+    // Special case for Joint Oversight Group
+    if (size === 'joint-oversight') {
+      return {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+        alignItems: 'flex-start',
+        margin: '40px auto',
+        maxWidth: '1200px',
+        gap: '30px'
+      };
+    }
+    
+    // Default desktop view
     return {
       display: 'flex',
       flexWrap: 'wrap',
@@ -372,7 +386,7 @@ const OurPeople = () => {
             
             <QuotedTagline text={leadershipData.joint_oversight_group.tagline} />
             
-            <div style={getGridStyles('medium')}>
+            <div style={getGridStyles('joint-oversight')}>
               {leadershipData.joint_oversight_group.people.map((person, index) => (
                 <LeadershipCard 
                   key={index}
@@ -382,6 +396,7 @@ const OurPeople = () => {
                   photo={person.photo}
                   size="medium"
                   showBio={true}
+                  style={{ width: windowWidth > 1024 ? 'calc(50% - 15px)' : 'auto' }}
                 />
               ))}
             </div>

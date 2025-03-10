@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const location = useLocation();
+  const isOurPeoplePage = location.pathname === '/our-people';
+
+  // Reset scroll position when location changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,6 +29,7 @@ const NavBar = () => {
   };
 
   const navItems = [
+    { name: 'Home', path: '/' },
     { name: 'Research', path: '/research' },
     { name: 'Partnership', path: '/partnership' },
     { name: 'Our People', path: '/our-people' },
@@ -30,11 +38,18 @@ const NavBar = () => {
     { name: 'News', path: '/news' },
   ];
 
+  // Check if a navigation item is active
+  const isActive = (path) => {
+    // Special case for home page
+    if (path === '/' && location.pathname === '/') {
+      return true;
+    }
+    return location.pathname === path;
+  };
+
   return (
-    <nav className="navbar" style={{
+    <nav className={`navbar ${isOurPeoplePage ? 'relative' : 'fixed'}`} style={{
       transition: 'transform 0.3s ease, opacity 0.3s ease',
-      position: 'relative',
-      zIndex: 999,
       backgroundColor: 'var(--color-white)'
     }}>
       <div className="container navbar-container">
@@ -55,7 +70,10 @@ const NavBar = () => {
             <ul className="navbar-nav">
               {navItems.map((item, index) => (
                 <li key={index} className="nav-item">
-                  <Link to={item.path} className="nav-link">
+                  <Link 
+                    to={item.path} 
+                    className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
+                  >
                     {item.name}
                   </Link>
                 </li>
@@ -86,7 +104,7 @@ const NavBar = () => {
                 <li key={index} className="mobile-nav-item">
                   <Link 
                     to={item.path} 
-                    className="mobile-nav-link"
+                    className={`mobile-nav-link ${isActive(item.path) ? 'active' : ''}`}
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}

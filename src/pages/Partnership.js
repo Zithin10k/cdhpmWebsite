@@ -12,8 +12,8 @@ const Partnership = () => {
     >
       <div className="container">
         <div style={{ padding: '2rem 0' }}>
-          <h1>Partnership</h1>
-          <p>Our partnerships and collaborations.</p>
+          <h1>Work Pending.....</h1>
+          
         </div>
       </div>
     </motion.div>
