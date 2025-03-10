@@ -83,8 +83,8 @@ const OurPeople = () => {
   // Section spacing based on screen size
   const getSectionSpacing = () => {
     return windowWidth <= 768 
-      ? { marginBottom: '60px', paddingTop: '20px' } 
-      : { marginBottom: '100px', paddingTop: '30px' };
+      ? { marginBottom: '80px', paddingTop: '40px' } 
+      : { marginBottom: '120px', paddingTop: '50px' };
   };
 
   // Get team collage styles based on screen size
@@ -166,7 +166,7 @@ const OurPeople = () => {
           <section style={{ 
             ...getSectionSpacing(),
             borderBottom: '1px solid rgba(0,0,0,0.1)',
-            paddingBottom: windowWidth <= 768 ? '40px' : '60px'
+            paddingBottom: windowWidth <= 768 ? '60px' : '80px'
           }}>
             <h2 style={{ 
               textAlign: 'center', 
@@ -205,7 +205,7 @@ const OurPeople = () => {
                   bio={person.bio}
                   photo={person.photo}
                   size="large"
-                  showBio={false}
+                  showBio={windowWidth <= 768}
                   layout={windowWidth <= 768 ? 'vertical' : 'horizontal'}
                   isEven={index % 2 === 1}
                 />
@@ -217,7 +217,7 @@ const OurPeople = () => {
           <section style={{ 
             ...getSectionSpacing(),
             borderBottom: '1px solid rgba(0,0,0,0.1)',
-            paddingBottom: windowWidth <= 768 ? '40px' : '60px'
+            paddingBottom: windowWidth <= 768 ? '60px' : '80px'
           }}>
             <h2 style={{ 
               textAlign: 'center', 
@@ -258,7 +258,7 @@ const OurPeople = () => {
           <section style={{ 
             ...getSectionSpacing(),
             borderBottom: '1px solid rgba(0,0,0,0.1)',
-            paddingBottom: windowWidth <= 768 ? '40px' : '60px'
+            paddingBottom: windowWidth <= 768 ? '60px' : '80px'
           }}>
             <h2 style={{ 
               textAlign: 'center', 

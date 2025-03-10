@@ -240,8 +240,8 @@ const LeadershipCard = ({
     );
   }
 
-  // Mobile/tablet view for co-directors or vertical layout for others
-  const shouldShowModal = showBio || isCoDirectorMobile;
+  // For all other cases: vertical layout or horizontal layout on tablet/mobile
+  const shouldShowModal = showBio || layout === 'horizontal' || (layout === 'vertical' && isMobile);
   
   return (
     <>
@@ -353,7 +353,7 @@ const LeadershipCard = ({
             flexDirection: 'column',
             justifyContent: 'center',
             flex: 1,
-            textAlign: isMobile ? 'left' : 'center'
+            textAlign: 'left'
           }}
         >
           <h3 
@@ -364,7 +364,7 @@ const LeadershipCard = ({
                 : (size === 'large' ? 'var(--font-size-xl)' : 'var(--font-size-lg)'),
               margin: '0 0 8px 0',
               color: 'var(--color-text-dark)',
-              textAlign: isMobile ? 'left' : 'inherit'
+              textAlign: 'left'
             }}
           >
             {name}
@@ -377,7 +377,7 @@ const LeadershipCard = ({
               color: 'var(--color-primary)',
               margin: '0',
               fontWeight: '500',
-              textAlign: isMobile ? 'left' : 'inherit'
+              textAlign: 'left'
             }}
           >
             {title}
@@ -397,7 +397,7 @@ const LeadershipCard = ({
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
-                textAlign: isMobile ? 'left' : 'inherit'
+                textAlign: 'left'
               }}
             >
               {bio}

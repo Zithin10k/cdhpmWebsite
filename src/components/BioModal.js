@@ -90,7 +90,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo }) => {
                 border: '3px solid var(--color-primary)'
               }}>
                 <img 
-                  src={`/assets/People/IMG/${photo}.jpg`} 
+                  src={`/assets/leadership/img/${photo}.jpg`} 
                   alt={name} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -121,7 +121,8 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo }) => {
             <p style={{ 
               fontFamily: 'var(--font-primary)', 
               color: 'var(--color-text-dark)',
-              fontSize: 'var(--font-size-md)'
+              fontSize: 'var(--font-size-md)',
+              textAlign: 'justify'
             }}>
               {bio}
             </p>

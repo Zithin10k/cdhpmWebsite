@@ -82,7 +82,7 @@ const Video = ({ thumbnailUrl, title, youtubeUrl }) => {
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                  backgroundColor: 'rgba(243, 0, 0, 0.77)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
