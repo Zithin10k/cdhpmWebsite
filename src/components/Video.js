@@ -74,6 +74,7 @@ const Video = ({ thumbnailUrl, title, youtubeUrl }) => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px'
+                
               }}
             >
               <div 

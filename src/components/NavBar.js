@@ -31,7 +31,12 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" style={{
+      transition: 'transform 0.3s ease, opacity 0.3s ease',
+      position: 'relative',
+      zIndex: 999,
+      backgroundColor: 'var(--color-white)'
+    }}>
       <div className="container navbar-container">
         {/* Desktop Navigation */}
         <div className="navbar-desktop">

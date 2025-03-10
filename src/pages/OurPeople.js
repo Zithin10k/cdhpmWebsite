@@ -1,15 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import LeadershipCard from '../components/LeadershipCard';
 import QuotedTagline from '../components/QuotedTagline';
 import TeamCard from '../components/TeamCard';
+import StickyNav from '../components/StickyNav';
 
 const OurPeople = () => {
   const [leadershipData, setLeadershipData] = useState(null);
   const [peopleData, setPeopleData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const [activeSection, setActiveSection] = useState('co-directors');
+
+  // Create refs for each section
+  const coDirectorsRef = useRef(null);
+  const executiveGroupRef = useRef(null);
+  const jointOversightGroupRef = useRef(null);
+  const theTeamRef = useRef(null);
+
+  // Define sections for the sticky nav
+  const sections = [
+    { id: 'co-directors', name: 'Co-Directors', ref: coDirectorsRef },
+    { id: 'executive-group', name: 'Executive Group', ref: executiveGroupRef },
+    { id: 'joint-oversight-group', name: 'Joint Oversight Group', ref: jointOversightGroupRef },
+    { id: 'the-team', name: 'The Team', ref: theTeamRef }
+  ];
 
   // Handle window resize for responsive design
   useEffect(() => {
@@ -25,6 +41,7 @@ const OurPeople = () => {
     }
   }, []);
 
+  // Fetch data
   useEffect(() => {
     // Fetch leadership data
     Promise.all([
@@ -41,6 +58,51 @@ const OurPeople = () => {
         setLoading(false);
       });
   }, []);
+
+  // Intersection Observer to track which section is in view
+  useEffect(() => {
+    if (loading) return;
+
+    const options = {
+      root: null,
+      rootMargin: '-100px 0px -70% 0px', // Adjust as needed
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // Find the section ID from the entry target's ID
+          const sectionId = entry.target.id;
+          setActiveSection(sectionId);
+        }
+      });
+    }, options);
+
+    // Observe each section
+    sections.forEach(section => {
+      if (section.ref.current) {
+        observer.observe(section.ref.current);
+      }
+    });
+
+    return () => {
+      sections.forEach(section => {
+        if (section.ref.current) {
+          observer.unobserve(section.ref.current);
+        }
+      });
+    };
+  }, [loading]);
+
+  // Handle section click
+  const handleSectionClick = (sectionId) => {
+    const section = sections.find(s => s.id === sectionId);
+    if (section && section.ref.current) {
+      section.ref.current.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+    }
+  };
 
   // Determine number of cards per row based on screen size
   const getGridStyles = (size) => {
@@ -153,6 +215,16 @@ const OurPeople = () => {
         height={windowWidth <= 768 ? '400px' : '600px'}
       />
 
+      {/* Sticky Navigation Bar */}
+      {!loading && (
+        <StickyNav 
+          sections={sections}
+          activeSection={activeSection}
+          onSectionClick={handleSectionClick}
+          isMobile={windowWidth <= 768}
+        />
+      )}
+
       {loading ? (
         <div style={{ 
           display: 'flex', 
@@ -168,11 +240,16 @@ const OurPeople = () => {
             : '0 var(--spacing-lg) var(--spacing-xl)' 
         }}>
           {/* Co-Directors Section */}
-          <section style={{ 
-            ...getSectionSpacing(),
-            borderBottom: '1px solid rgba(0,0,0,0.1)',
-            paddingBottom: windowWidth <= 768 ? '60px' : '80px'
-          }}>
+          <section 
+            id="co-directors" 
+            ref={coDirectorsRef}
+            style={{ 
+              ...getSectionSpacing(),
+              borderBottom: '1px solid rgba(0,0,0,0.1)',
+              paddingBottom: windowWidth <= 768 ? '60px' : '80px',
+              scrollMarginTop: '60px' // Adjusted for sticky nav height
+            }}
+          >
             <h2 style={{ 
               textAlign: 'center', 
               fontFamily: 'var(--font-primary)',
@@ -219,11 +296,16 @@ const OurPeople = () => {
           </section>
           
           {/* Executive Group Section */}
-          <section style={{ 
-            ...getSectionSpacing(),
-            borderBottom: '1px solid rgba(0,0,0,0.1)',
-            paddingBottom: windowWidth <= 768 ? '60px' : '80px'
-          }}>
+          <section 
+            id="executive-group" 
+            ref={executiveGroupRef}
+            style={{ 
+              ...getSectionSpacing(),
+              borderBottom: '1px solid rgba(0,0,0,0.1)',
+              paddingBottom: windowWidth <= 768 ? '60px' : '80px',
+              scrollMarginTop: '60px' // Adjusted for sticky nav height
+            }}
+          >
             <h2 style={{ 
               textAlign: 'center', 
               fontFamily: 'var(--font-primary)',
@@ -260,11 +342,16 @@ const OurPeople = () => {
           </section>
           
           {/* Joint Oversight Group Section */}
-          <section style={{ 
-            ...getSectionSpacing(),
-            borderBottom: '1px solid rgba(0,0,0,0.1)',
-            paddingBottom: windowWidth <= 768 ? '60px' : '80px'
-          }}>
+          <section 
+            id="joint-oversight-group" 
+            ref={jointOversightGroupRef}
+            style={{ 
+              ...getSectionSpacing(),
+              borderBottom: '1px solid rgba(0,0,0,0.1)',
+              paddingBottom: windowWidth <= 768 ? '60px' : '80px',
+              scrollMarginTop: '60px' // Adjusted for sticky nav height
+            }}
+          >
             <h2 style={{ 
               textAlign: 'center', 
               fontFamily: 'var(--font-primary)',
@@ -301,10 +388,15 @@ const OurPeople = () => {
           </section>
           
           {/* The Team Section */}
-          <section style={{ 
-            ...getSectionSpacing(),
-            marginBottom: 0
-          }}>
+          <section 
+            id="the-team" 
+            ref={theTeamRef}
+            style={{ 
+              ...getSectionSpacing(),
+              marginBottom: 0,
+              scrollMarginTop: '60px' // Adjusted for sticky nav height
+            }}
+          >
             <h2 style={{ 
               textAlign: 'center', 
               fontFamily: 'var(--font-primary)',
