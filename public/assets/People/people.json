@@ -1,0 +1,276 @@
+{
+    "people": [
+      {
+        "name": "Bharath Potla",
+        "position": "Deputy General Manager & Tech Lead",
+        "area_of_focus": [
+          "HealthTech",
+          "Building AI Platforms"
+        ],
+        "bio": "Bharath serves as the Lead Technical for Clinical AI at Apollo Hospitals, bringing over a decade of expertise in clinical technology and healthcare innovation. Having spent a significant part of his career in startups, he drives the integration of AI to enhance patient care and streamline clinical workflows. He holds a bachelor's degree from BITS Pilani and an executive MBA from ISB, and is an avid enthusiast of trekking and sports."
+      },
+      {
+        "name": "Harshini Reddy Musuku",
+        "position": "Deputy General Manager – Sales and Business Development",
+        "area_of_focus": [
+          "Business Development",
+          "Legal and Compliance Review",
+          "Market Research and Opportunity Identification",
+          "Commercialization",
+          "Collaboration with Cross-Functional Teams"
+        ],
+        "bio": "Harshini specializes in website and marketing collateral design, integrating platforms such as Azure, AWS, and Hugging Face. With expertise in regulatory compliance and accreditation, she conducts thorough legal reviews to ensure adherence. Skilled in market research and opportunity identification, she facilitates government and corporate liaison for national and international projects. She collaborates with cross-functional teams to drive commercialization and operational support."
+      },
+      {
+        "name": "Professor Damian Roland",
+        "position": "Paediatric Emergency Medicine Consultant",
+        "area_of_focus": [
+          "Paediatric Emergency Medicine",
+          "Deteriorating Child Care",
+          "Clinical Leadership",
+          "Early Warning Systems"
+        ],
+        "bio": "Professor Damian Roland is a Paediatric Emergency Medicine Consultant dedicated to improving outcomes for children and young people in emergency settings. He developed the award-winning Paediatric Observation Priority Score (POPS) and was named in the Health Service Journal’s inaugural NHS Innovator of the Year awards. He is the NHS England lead for deteriorating child care and the clinical lead for the English National Paediatric Early Warning Score (NPEWS) programme, as well as the Urgent and Emergency Care System Clinical Director for Leicester, Leicestershire and Rutland."
+      },
+      {
+        "name": "Professor Timothy J Coats",
+        "position": "Professor of Emergency Medicine",
+        "area_of_focus": [
+          "Trauma Care",
+          "Emergency Medicine",
+          "Data Analytics",
+          "Clinical Trials"
+        ],
+        "bio": "Professor Timothy J Coats is a leading expert in Emergency Medicine, with a background in trauma care and pre-hospital medicine. His research focuses on clinical trials, coagulation following injury, and the application of AI methods for trauma outcome prediction."
+      },
+      {
+        "name": "Professor Melanie Davies",
+        "position": "Professor of Diabetes Medicine",
+        "area_of_focus": [
+          "Diabetes Research",
+          "Type 2 Diabetes Management",
+          "Cardiometabolic Disease"
+        ],
+        "bio": "Professor Melanie Davies is a renowned expert in Diabetes Medicine with over 960 publications and more than £125M in grant funding. As Co-Director of the Leicester Diabetes Centre and a NIHR Senior Investigator, her work focuses on the causes, prevention, and treatment of type 2 diabetes. She was awarded a CBE for her services to diabetes research."
+      },
+      {
+        "name": "Professor Matt Bown",
+        "position": "Professor of Vascular Surgery",
+        "area_of_focus": [
+          "Vascular Disease",
+          "Abdominal Aortic Aneurysm",
+          "Genomic Discovery Research"
+        ],
+        "bio": "Professor Matt Bown is the British Heart Foundation Professor of Vascular Surgery. Leading a research group with over £10M in funding, his work covers fundamental research to clinical trials, with a special interest in abdominal aortic aneurysm and global genomic discovery in vascular disease."
+      },
+      {
+        "name": "Professor Chris Brightling",
+        "position": "Professor of Respiratory Medicine",
+        "area_of_focus": [
+          "Asthma",
+          "COPD",
+          "Long-COVID Research",
+          "Precision Health"
+        ],
+        "bio": "Professor Chris Brightling is a leading figure in respiratory research, focusing on asthma, chronic cough, COPD, and long-COVID. He holds several leadership roles at the NIHR Leicester Biomedical Research Centre and collaborates on large-scale projects to improve clinical management and precision health."
+      },
+      {
+        "name": "Professor David Adlam",
+        "position": "Professor of Cardiovascular Sciences",
+        "area_of_focus": [
+          "Acute Cardiology",
+          "Interventional Cardiology",
+          "Cardio-Oncology"
+        ],
+        "bio": "Professor David Adlam is an academic interventional cardiologist whose research covers acute and interventional cardiology, including uncommon causes of heart attacks and innovations in cardiovascular medical devices. He is actively building collaborative partnerships in digital health."
+      },
+      {
+        "name": "Professor Gerry McCann",
+        "position": "Professor of Cardiac Imaging",
+        "area_of_focus": [
+          "Cardiac Imaging",
+          "Heart Failure",
+          "Diabetes and Coronary Disease"
+        ],
+        "bio": "Professor Gerry McCann is an expert in cardiac imaging and an Honorary Consultant Cardiologist. He leads cardiovascular research at the NIHR Leicester Biomedical Research Centre, focusing on integrating multi-modal imaging and AI technologies for improved patient risk stratification."
+      },
+      {
+        "name": "Professor Dominick Shaw",
+        "position": "Professor and Honorary Consultant",
+        "area_of_focus": [
+          "Asthma",
+          "Clinical Data Integration",
+          "Healthcare Systems"
+        ],
+        "bio": "Professor Dominick Shaw is recognized for pioneering digital healthcare systems in respiratory medicine. His research utilizes large datasets and innovative messaging systems to derive clinical insights and improve healthcare provision."
+      },
+      {
+        "name": "Professor Jitendra Mangwani",
+        "position": "Professor of Trauma and Orthopaedic Surgery",
+        "area_of_focus": [
+          "Foot and Ankle Surgery",
+          "Orthopaedic Research",
+          "Trauma Surgery"
+        ],
+        "bio": "Professor Jitendra Mangwani is an internationally renowned consultant in trauma and orthopaedic surgery with a special focus on foot and ankle conditions. He has led numerous national and international studies and holds key leadership roles within orthopaedic societies."
+      },
+      {
+        "name": "Dr Bhavik Modi",
+        "position": "Consultant Interventional Cardiologist, Honorary Associate Professor",
+        "area_of_focus": [
+          "Cardiology",
+          "Coronary Physiology",
+          "Intracoronary Imaging",
+          "Heart Attack Care",
+          "Healthcare Innovation"
+        ],
+        "bio": "Dr Bhavik Modi is a Consultant Interventional Cardiologist with a PhD in Cardiovascular and Coronary Physiology. Trained at Cambridge and UCL, he has led initiatives including a regional post-ACS Chest Pain Centre that has become a national blueprint, and is now developing a regional Healthcare Innovation Hub. His work spans coronary intervention, secondary prevention, and cardiovascular risk."
+      },
+      {
+        "name": "Dr Francesco Zaccardi",
+        "position": "Associate Professor in Clinical Epidemiology",
+        "area_of_focus": [
+          "Cardiometabolic Medicine",
+          "Health Data Science",
+          "Comparative Drug Assessment"
+        ],
+        "bio": "Dr Francesco Zaccardi is the Deputy Director of the Leicester Real World Evidence Unit. His work in clinical epidemiology and health data science focuses on large-scale studies in cardiometabolic diseases and the development of advanced statistical methods for electronic health records analysis."
+      },
+      {
+        "name": "Dr Anvesha Singh",
+        "position": "Associate Professor and Consultant Cardiologist",
+        "area_of_focus": [
+          "Cardiac Imaging",
+          "Translational Research",
+          "Risk Stratification"
+        ],
+        "bio": "Dr Anvesha Singh specializes in advanced cardiac imaging to enhance risk stratification in patients, particularly those with aortic stenosis. Her translational research also examines socio-demographic factors affecting healthcare access and treatment outcomes."
+      },
+      {
+        "name": "Dr Robert Free",
+        "position": "Lecturer in Health Data Science",
+        "area_of_focus": [
+          "Clinical Informatics",
+          "Software Engineering",
+          "Artificial Intelligence in Healthcare",
+          "Bioinformatics"
+        ],
+        "bio": "Dr Robert Free is a Lecturer in Health Data Science and the Director of Informatics at the NIHR Leicester Biomedical Research Centre. His research spans clinical informatics, applied AI, and bioinformatics, with projects that include digital twins for respiratory emergencies and integrating genomics data for cancer patient decision-making."
+      },
+      {
+        "name": "Dr Triyanka Tiu",
+        "position": "Assistant Manager – Clinical Quality Assurance",
+        "area_of_focus": [
+          "Clinical Quality Assurance",
+          "Ethics and Regulatory Compliance",
+          "Audits for ISO 13485 & MDSAP",
+          "Hospital Administration"
+        ],
+        "bio": "Dr. Triyanka works as the Assistant Manager for the Clinical AI Team at Apollo Hospitals, leading Clinical Quality Assurance and overseeing ISO 13485 and MDSAP audits for Software as a Medical Device (SaMD) over the past three years. She specializes in ethical and regulatory compliance across multiple jurisdictions and manages day-to-day team administration. Additionally, she has been an active volunteer at the THIT Conference for the last three years."
+      },
+      {
+        "name": "Korrapati Naga Chetana",
+        "position": "Clinical Resource Coordinator",
+        "area_of_focus": [
+          "Intellectual Property Management",
+          "Clinical AI Integration",
+          "Cross-functional Collaboration"
+        ],
+        "bio": "With a background in Nursing and a Master's in Hospital Administration, Korrapati focuses on intellectual property management, cross-functional team collaboration, and integrating AI into clinical workflows. She works closely with nursing teams, clinicians, and AI developers to ensure seamless implementation and compliance."
+      },
+      {
+        "name": "Ritesh Grover",
+        "position": "Sales Coordinator – Clinical AI",
+        "area_of_focus": [
+          "AI Engineering",
+          "Sales Coordination",
+          "Clinical AI Solutions",
+          "Computer Vision",
+          "Medical Image Analysis",
+          "Website & Marketing Collateral Design",
+          "Regulatory Compliance",
+          "API Management",
+          "Cloud Platform Integration"
+        ],
+        "bio": "Ritesh specializes in AI-driven clinical solutions, particularly in medical image analysis and computer vision. He manages API integrations and has been instrumental in designing Clinical AI websites. In addition, he plays a key role in sales coordination and has contributed to ISO 13485 & MDSAP compliance audits, along with volunteering at the THIT Conference for the past two years."
+      },
+      {
+        "name": "Laxmi Priya Kasi",
+        "position": "Machine Learning Engineer",
+        "area_of_focus": [
+          "AI/ML in Healthcare",
+          "Clinical Data Science",
+          "Disease Progression Modeling (CKD, ALF, Stroke)",
+          "Risk Management & FMEA for ISO 13485"
+        ],
+        "bio": "For the past three years, Laxmi has been working as a Machine Learning Engineer in the Clinical AI Team at Apollo Hospitals, leading the development of disease progression models for chronic kidney disease (CKD), acute liver failure (ALF), and stroke. She collaborates with academia and industry on AI-driven healthcare projects, including hospital throughput optimization and confidential computing. She presented her CKD research at the World Congress of Nephrology 2025, with an abstract published in Kidney International Reports."
+      },
+      {
+        "name": "Tameem Ansari",
+        "position": "Machine Learning Engineer",
+        "area_of_focus": [
+          "ECG Signals Analysis LLM",
+          "Mammogram",
+          "Chest X-Ray",
+          "Prompt Engineering"
+        ],
+        "bio": "Tameem is a Machine Learning Engineer specializing in computer vision, ECG signal analysis, and large language models (LLMs) with a strong focus on medical diagnostics. He optimizes LLMs through prompt engineering to drive innovative, AI-powered healthcare solutions that enhance diagnostic efficiency and accuracy."
+      },
+      {
+        "name": "Sai Ram Molleti",
+        "position": "Machine Learning Engineer/Full Stack Developer",
+        "area_of_focus": [
+          "Machine Learning and Deep Learning",
+          "Full stack development"
+        ],
+        "bio": "Sai Ram is a Full-Stack Developer at Apollo Hospitals' Clinical AI Team with four years of experience in building scalable and efficient applications. He has developed over seven applications, including a role-based Camp Management System with automated WhatsApp reporting and a Hypertension Prediction Model. He holds a B.Tech in Electronics and Communication Engineering (2020) and is passionate about leveraging technology to solve complex problems."
+      },
+      {
+        "name": "Lalith Kiran Molleti",
+        "position": "Machine Learning Engineer",
+        "area_of_focus": [
+          "Machine Learning",
+          "Prompt Engineering",
+          "NLP and LLMs"
+        ],
+        "bio": "Lalith focuses on building robust Natural Language Processing (NLP) systems and developing Large Language Models (LLMs). He notably designed and implemented a state-of-the-art Named Entity Recognition (NER) model to improve text analysis efficiency. Recently graduated, he has quickly applied his skills to real-world AI challenges while also enjoying badminton as a hobby."
+      },
+      {
+        "name": "Archanaa R",
+        "position": "Data Engineer",
+        "area_of_focus": [
+          "AI-driven data processing",
+          "Data pipeline optimization",
+          "Patient insights",
+          "Python scripting",
+          "Collaboration with healthcare professionals",
+          "AI output refinement"
+        ],
+        "bio": "Archanaa is a Data Engineer working on the AI Companion App, which leverages AI to generate detailed patient insights. Her focus is on data processing, Python scripting, and optimizing data pipelines to enhance efficiency and accuracy. She specializes in debugging, workflow automation, and seamless data integration, collaborating closely with doctors and cross-functional teams to refine AI-generated outputs."
+      },
+      {
+        "name": "Y Jospin Dhivya",
+        "position": "Data Science Engineer",
+        "area_of_focus": [
+          "AI in Healthcare",
+          "Machine Learning & Deep Learning",
+          "Predictive Analytics",
+          "Clinical Data Processing & Automation",
+          "AI-Augmented Decision Support Systems",
+          "PostgreSQL & Data Extraction"
+        ],
+        "bio": "Y Jospin Dhivya is a Data Science Engineer in the Clinical AI Team at Apollo Hospitals, specializing in machine learning and deep learning. With over two and a half years of experience, she works on AI-augmented pathways including AI Antibiotics Recommendation Systems, AI Pre-Anesthesia predictions, and AI Early Warning Signs. She also collaborates with MIT on automating data pipelines for seamless extraction, processing, and predictive analysis."
+      },
+      {
+        "name": "Sowjanya Golthi",
+        "position": "Full Stack Developer",
+        "area_of_focus": [
+          "Full Stack Development",
+          "UI/UX Design",
+          "Healthcare Tech Integration"
+        ],
+        "bio": "As a Full-Stack Developer, Sowjanya specializes in developing intuitive and scalable web applications that optimize Clinical AI workflows. Her expertise in front-end development, UI/UX design, and backend integration ensures interactive and efficient user interfaces. She bridges the gap between technology and patient care by collaborating with clinicians, data scientists, and AI engineers."
+      }
+    ]
+  }
+  

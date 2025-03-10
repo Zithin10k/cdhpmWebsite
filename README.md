@@ -1,6 +1,12 @@
-# Getting Started with Create React App
+# React Project with React Router and Framer Motion
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and includes:
+- [React Router](https://reactrouter.com/) for navigation
+- [Framer Motion](https://www.framer.com/motion/) for animations
+
+## Project Structure
+
+The project has been set up with a minimal structure, ready for you to build upon.
 
 ## Available Scripts
 
@@ -68,3 +74,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Additional Packages
+
+### React Router
+
+React Router is used for handling navigation in the application. Learn more in the [React Router documentation](https://reactrouter.com/docs/en/v6).
+
+### Framer Motion
+
+Framer Motion is used for animations. Learn more in the [Framer Motion documentation](https://www.framer.com/docs/introduction/).
