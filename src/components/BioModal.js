@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const BioModal = ({ isOpen, onClose, name, title, bio, photo }) => {
+const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = false }) => {
   // Close modal when Escape key is pressed
   useEffect(() => {
     const handleEsc = (event) => {
@@ -23,6 +23,11 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo }) => {
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
+
+  // Determine the correct photo path based on whether it's a team member or leadership
+  const photoPath = isTeamMember 
+    ? `/assets/People/IMG/${photo}.jpg` 
+    : `/assets/leadership/img/${photo}.jpg`;
 
   return (
     <div className="modal-overlay" 
@@ -90,7 +95,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo }) => {
                 border: '3px solid var(--color-primary)'
               }}>
                 <img 
-                  src={`/assets/leadership/img/${photo}.jpg`} 
+                  src={photoPath} 
                   alt={name} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
@@ -139,7 +144,8 @@ BioModal.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
-  photo: PropTypes.string
+  photo: PropTypes.string,
+  isTeamMember: PropTypes.bool
 };
 
 export default BioModal; 

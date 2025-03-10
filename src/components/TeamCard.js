@@ -91,6 +91,7 @@ const TeamCard = ({ name, position, bio, photoName }) => {
         title={position}
         bio={bio}
         photo={photoName}
+        isTeamMember={true}
       />
     </>
   );

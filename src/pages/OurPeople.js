@@ -130,6 +130,11 @@ const OurPeople = () => {
 
   // Function to convert name to photo filename format
   const getPhotoFilename = (name) => {
+    // Special case for specific doctors with dot in filename
+    if (name === "Dr Francesco Zaccardi" || name === "Dr Triyanka Tiu") {
+      return name.replace("Dr ", "Dr._").replace(/ /g, '_');
+    }
+    // For all other names, just replace spaces with underscores
     return name.replace(/ /g, '_');
   };
 
@@ -205,7 +210,7 @@ const OurPeople = () => {
                   bio={person.bio}
                   photo={person.photo}
                   size="large"
-                  showBio={windowWidth <= 768}
+                  showBio={false}
                   layout={windowWidth <= 768 ? 'vertical' : 'horizontal'}
                   isEven={index % 2 === 1}
                 />
