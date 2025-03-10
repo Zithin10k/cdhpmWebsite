@@ -608,3 +608,16 @@ h1 {
     text-align: left;
   }
 }
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-sm); /* Reduce padding from 1rem to 0.5rem on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--spacing-xs); /* Further reduce padding to 0.25rem on very small screens */
+  }
+}

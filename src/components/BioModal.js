@@ -1,7 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = false }) => {
+  // Add window width state for responsive design
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const isMobile = windowWidth <= 768;
+
+  // Handle window resize for responsive design
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
+
   // Close modal when Escape key is pressed
   useEffect(() => {
     const handleEsc = (event) => {
@@ -42,7 +60,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
         alignItems: 'center',
         justifyContent: 'center',
         zIndex: 1000,
-        padding: '20px'
+        padding: isMobile ? '10px' : '20px'
       }}
       onClick={onClose}
     >
@@ -50,7 +68,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
         style={{
           backgroundColor: 'white',
           borderRadius: '8px',
-          maxWidth: '800px',
+          maxWidth: isMobile ? '100%' : '800px',
           width: '100%',
           maxHeight: '90vh',
           overflow: 'auto',
@@ -77,7 +95,11 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
           ×
         </button>
         
-        <div className="modal-body" style={{ display: 'flex', flexDirection: 'column', padding: '30px' }}>
+        <div className="modal-body" style={{ 
+          display: 'flex', 
+          flexDirection: 'column', 
+          padding: isMobile ? '20px 15px' : '30px' 
+        }}>
           <div className="modal-header" style={{ 
             display: 'flex', 
             alignItems: 'center', 
@@ -87,8 +109,8 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
           }}>
             {photo && (
               <div className="modal-image" style={{ 
-                width: '150px', 
-                height: '150px', 
+                width: isMobile ? '120px' : '150px', 
+                height: isMobile ? '120px' : '150px', 
                 borderRadius: '50%', 
                 overflow: 'hidden',
                 marginBottom: '15px',
@@ -97,7 +119,16 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
                 <img 
                   src={photoPath} 
                   alt={name} 
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'cover' 
+                  }}
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${photoPath}`);
+                    e.target.onerror = null;
+                    e.target.src = '/assets/images/placeholder-profile.jpg';
+                  }}
                 />
               </div>
             )}
@@ -106,7 +137,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
               fontFamily: 'var(--font-secondary)', 
               color: 'var(--color-text-dark)',
               margin: '0 0 5px 0',
-              fontSize: 'var(--font-size-2xl)'
+              fontSize: isMobile ? 'var(--font-size-xl)' : 'var(--font-size-2xl)'
             }}>
               {name}
             </h2>
@@ -127,7 +158,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
               fontFamily: 'var(--font-primary)', 
               color: 'var(--color-text-dark)',
               fontSize: 'var(--font-size-md)',
-              textAlign: 'justify'
+              textAlign: isMobile ? 'left' : 'justify'
             }}>
               {bio}
             </p>
