@@ -662,3 +662,131 @@ h1 {
 .fixed-nav-padding {
   padding-top: 80px; /* Adjust this value based on your navbar height */
 }
+
+/* Partnership Page Styles */
+.hero-section {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.partnership-content {
+  padding: 2rem 0;
+}
+
+.partnership-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.section-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #0069b3;
+}
+
+.partner-logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 250px;
+  height: 120px;
+}
+
+.partner-logo {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Responsive styles for partnership page */
+@media (max-width: 992px) {
+  .hero-section {
+    height: 350px;
+  }
+  
+  .partner-logos {
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    height: 300px;
+  }
+  
+  .partnership-text {
+    font-size: 1rem;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .partner-logos {
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .logo-container {
+    max-width: 200px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    height: 200px;
+  }
+  
+  .partnership-text {
+    font-size: 0.95rem;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .partner-logos {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .logo-container {
+    max-width: 180px;
+    height: 90px;
+  }
+}

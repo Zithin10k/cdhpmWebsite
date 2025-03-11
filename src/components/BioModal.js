@@ -226,7 +226,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
                 margin: 0,
                 fontWeight: '600',
               }}>
-                Biography
+                About
               </h4>
             </div>
             

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
   const [isAtTop, setIsAtTop] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Add effect to track scroll position and hide main navbar
   useEffect(() => {
@@ -55,13 +58,34 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
     };
   }, []);
 
+  // Handle section selection and URL update
+  const handleSectionSelect = (sectionId, event) => {
+    // Prevent default browser behavior
+    if (event) {
+      event.preventDefault();
+    }
+    
+    // First, call the click handler to scroll to the section
+    onSectionClick(sectionId);
+    
+    // Update the URL without causing a navigation event
+    const newPath = `/our-people/${sectionId}`;
+    
+    // Use history.replaceState to update URL without navigation
+    window.history.replaceState(
+      { scrollPreservation: true },
+      '',
+      newPath
+    );
+  };
+
   return (
     <div 
       className="sticky-nav" 
       style={{
         position: 'sticky',
         top: 0,
-        zIndex: 1000, // Increased z-index to ensure it's above other elements
+        zIndex: 1000,
         backgroundColor: 'var(--color-white)',
         boxShadow: isSticky ? '0 2px 4px rgba(0,0,0,0.1)' : 'none',
         padding: '10px 0',
@@ -69,7 +93,7 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
         justifyContent: 'center',
         width: '100%',
         transition: 'box-shadow 0.3s ease',
-        willChange: 'position, top' // Optimize for animations
+        willChange: 'position, top'
       }}
     >
       {isMobile ? (
@@ -81,7 +105,7 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
         }}>
           <select 
             value={activeSection} 
-            onChange={(e) => onSectionClick(e.target.value)}
+            onChange={(e) => handleSectionSelect(e.target.value, e)}
             style={{
               width: '100%',
               padding: '10px',
@@ -114,7 +138,7 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
           {sections.map((section) => (
             <button
               key={section.id}
-              onClick={() => onSectionClick(section.id)}
+              onClick={(e) => handleSectionSelect(section.id, e)}
               style={{
                 padding: '10px 20px',
                 border: '1px solid var(--color-gray-300)',

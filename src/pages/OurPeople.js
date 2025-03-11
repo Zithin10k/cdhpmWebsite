@@ -5,6 +5,7 @@ import LeadershipCard from '../components/LeadershipCard';
 import QuotedTagline from '../components/QuotedTagline';
 import TeamCard from '../components/TeamCard';
 import StickyNav from '../components/StickyNav';
+import { useLocation, useParams } from 'react-router-dom';
 
 const OurPeople = () => {
   const [leadershipData, setLeadershipData] = useState(null);
@@ -12,6 +13,8 @@ const OurPeople = () => {
   const [loading, setLoading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [activeSection, setActiveSection] = useState('co-directors');
+  const location = useLocation();
+  const { sectionId } = useParams();
 
   // Create refs for each section
   const coDirectorsRef = useRef(null);
@@ -95,11 +98,55 @@ const OurPeople = () => {
     };
   }, [loading]);
 
+  // Effect to handle initial section from URL
+  useEffect(() => {
+    if (sectionId && !loading) {
+      const section = sections.find(s => s.id === sectionId);
+      if (section && section.ref.current) {
+        // Check if this is a navigation with history state
+        const historyState = window.history.state;
+        const hasScrollPreservation = historyState && historyState.scrollPreservation;
+        
+        // Only scroll if this is not an internal navigation with scroll preservation
+        if (!hasScrollPreservation) {
+          // Get the current position of the element
+          const elementRect = section.ref.current.getBoundingClientRect();
+          const absoluteElementTop = elementRect.top + window.pageYOffset;
+          
+          // Calculate offset for sticky header (approximately 60px)
+          const scrollOffset = 60;
+          
+          // Scroll to the element with offset
+          window.scrollTo({
+            top: absoluteElementTop - scrollOffset,
+            behavior: 'smooth'
+          });
+        }
+        
+        // Update active section state
+        setActiveSection(sectionId);
+      }
+    }
+  }, [sectionId, loading]);
+
   // Handle section click
   const handleSectionClick = (sectionId) => {
     const section = sections.find(s => s.id === sectionId);
     if (section && section.ref.current) {
-      section.ref.current.scrollIntoView({ behavior: 'smooth' });
+      // Get the current position of the element
+      const elementRect = section.ref.current.getBoundingClientRect();
+      const absoluteElementTop = elementRect.top + window.pageYOffset;
+      
+      // Calculate offset for sticky header (approximately 60px)
+      const scrollOffset = 60;
+      
+      // Scroll to the element with offset
+      window.scrollTo({
+        top: absoluteElementTop - scrollOffset,
+        behavior: 'smooth'
+      });
+      
+      // Update active section state
       setActiveSection(sectionId);
     }
   };

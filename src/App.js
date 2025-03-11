@@ -22,6 +22,7 @@ function App() {
               <Route path="research" element={<Research />} />
               <Route path="partnership" element={<Partnership />} />
               <Route path="our-people" element={<OurPeople />} />
+              <Route path="our-people/:sectionId" element={<OurPeople />} />
               <Route path="about" element={<About />} />
               <Route path="work-with-us" element={<WorkWithUs />} />
               <Route path="news" element={<News />} />
