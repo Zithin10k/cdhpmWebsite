@@ -17,6 +17,7 @@ const Research = () => {
         subText="Exploring innovative approaches to digital health and precision medicine to transform healthcare"
         height="450px"
         overlayColor="rgba(0, 0, 0, 0.4)"
+        textPosition="left"
       />
       
       <div className="container">

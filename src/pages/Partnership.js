@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import '../App.css';
-
+import Hero from '../components/Hero';
 const Partnership = () => {
   return (
     <motion.div 
@@ -11,14 +11,14 @@ const Partnership = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
-      {/* Hero Section with Banner Image */}
-      <div className="hero-section">
-        <img 
-          src="/assets/images/partnerBanner.png" 
-          alt="Partnership Banner" 
-          className="hero-image"
-        />
-      </div>
+      {/* Hero Section */}
+      <Hero 
+        image="/assets/images/partnerBanner.png"
+        mainText="Strategic Partnerships"
+        subText="Collaborating for innovation and impact in healthcare"
+        height="500px"
+        overlayColor="rgba(0, 0, 0, 0.4)"
+      />
 
       {/* Partnership Description Section */}
       <div className="container mt-5">
