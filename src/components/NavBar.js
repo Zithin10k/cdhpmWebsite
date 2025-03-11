@@ -35,7 +35,6 @@ const NavBar = () => {
     { name: 'About Us', path: '/about' },
     { name: 'Work with Us', path: '/work-with-us' },
     { name: 'Contact Us', path: '/contact-us' },
-    { name: 'News', path: '/news' },
   ];
 
   // Check if a navigation item is active
