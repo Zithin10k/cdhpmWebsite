@@ -8,6 +8,7 @@ import OurPeople from './pages/OurPeople';
 import About from './pages/About';
 import WorkWithUs from './pages/WorkWithUs';
 import News from './pages/News';
+import ContactUs from './pages/ContactUs';
 import Layout from './components/Layout';
 import './App.css';
 
@@ -26,6 +27,7 @@ function App() {
               <Route path="about" element={<About />} />
               <Route path="work-with-us" element={<WorkWithUs />} />
               <Route path="news" element={<News />} />
+              <Route path="contact-us" element={<ContactUs />} />
             </Route>
           </Routes>
         </AnimatePresence>

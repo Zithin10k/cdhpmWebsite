@@ -59,6 +59,7 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
   if (animationState === 'closed' && !isOpen) return null;
 
   // Determine the correct photo path based on whether it's a team member or leadership
+  // Use the photo property directly as it's already in the correct format in the JSON
   const photoPath = isTeamMember 
     ? `/assets/People/IMG/${photo}.jpg` 
     : `/assets/leadership/img/${photo}.jpg`;

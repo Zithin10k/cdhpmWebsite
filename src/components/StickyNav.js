@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
   const [isAtTop, setIsAtTop] = useState(true);
@@ -78,6 +79,11 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
       newPath
     );
   };
+
+  // If no sections are provided or activeSection is null, don't render
+  if (!sections || sections.length === 0 || !activeSection) {
+    return null;
+  }
 
   return (
     <div 
@@ -161,6 +167,19 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
       )}
     </div>
   );
+};
+
+StickyNav.propTypes = {
+  sections: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      ref: PropTypes.object
+    })
+  ).isRequired,
+  activeSection: PropTypes.string,
+  onSectionClick: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired
 };
 
 export default StickyNav; 

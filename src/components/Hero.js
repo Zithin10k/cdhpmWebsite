@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Hero = ({ 
@@ -10,6 +10,35 @@ const Hero = ({
   textPosition = 'center',
   textColor = 'white'
 }) => {
+  const [responsiveHeight, setResponsiveHeight] = useState(height);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+  
+  // Update height based on screen size
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      
+      if (window.innerWidth <= 480) {
+        setResponsiveHeight('350px');
+      } else if (window.innerWidth <= 768) {
+        setResponsiveHeight('400px');
+      } else {
+        setResponsiveHeight(height);
+      }
+    };
+    
+    // Set initial height
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Clean up
+    return () => window.removeEventListener('resize', handleResize);
+  }, [height]);
+
   // Define text alignment based on position
   const getTextAlignment = () => {
     switch(textPosition) {
@@ -22,12 +51,31 @@ const Hero = ({
     }
   };
 
+  // Responsive font sizes
+  const getTitleFontSize = () => {
+    if (windowWidth <= 480) {
+      return 'calc(var(--font-size-3xl) * 0.8)';
+    } else if (windowWidth <= 768) {
+      return 'calc(var(--font-size-3xl) * 0.9)';
+    }
+    return 'var(--font-size-4xl)';
+  };
+  
+  const getSubtitleFontSize = () => {
+    if (windowWidth <= 480) {
+      return 'calc(var(--font-size-md) * 1.1)';
+    } else if (windowWidth <= 768) {
+      return 'var(--font-size-lg)';
+    }
+    return 'var(--font-size-lg)';
+  };
+
   return (
     <div className="hero" style={{
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
-      height: height,
+      height: responsiveHeight,
       position: 'relative',
       width: '100%',
       display: 'flex',
@@ -52,13 +100,13 @@ const Hero = ({
         <div className="hero-content" style={{
           maxWidth: '800px',
           margin: '0 auto',
-          padding: 'var(--spacing-lg)',
+          padding: windowWidth <= 480 ? 'var(--spacing-md)' : 'var(--spacing-lg)',
           color: textColor,
           textAlign: 'center'
         }}>
           <h1 className="hero-title" style={{
             fontFamily: 'var(--font-primary)',
-            fontSize: 'var(--font-size-4xl)',
+            fontSize: getTitleFontSize(),
             fontWeight: '700',
             marginBottom: 'var(--spacing-md)',
             textShadow: '0 2px 8px rgba(0, 0, 0, 0.5)'
@@ -68,8 +116,8 @@ const Hero = ({
           
           {/* Divider */}
           <div className="hero-divider" style={{
-            width: '80px',
-            height: '4px',
+            width: windowWidth <= 480 ? '60px' : '80px',
+            height: windowWidth <= 480 ? '3px' : '4px',
             backgroundColor: 'var(--color-primary)',
             margin: '0 auto',
             marginBottom: 'var(--spacing-md)'
@@ -77,7 +125,7 @@ const Hero = ({
           
           <p className="hero-subtitle" style={{
             fontFamily: 'var(--font-secondary)',
-            fontSize: 'var(--font-size-lg)',
+            fontSize: getSubtitleFontSize(),
             fontWeight: '400',
             marginBottom: 0,
             textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)'
