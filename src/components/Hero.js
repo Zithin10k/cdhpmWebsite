@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import BlurUpImage from './BlurUpImage';
 
 const Hero = ({ 
   image, 
@@ -72,18 +73,36 @@ const Hero = ({
 
   return (
     <div className="hero" style={{
-      backgroundImage: `url(${image})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      height: responsiveHeight,
       position: 'relative',
+      height: responsiveHeight,
       width: '100%',
       display: 'flex',
       alignItems: 'center',
       justifyContent: getTextAlignment(),
       marginTop: 0,
-      marginBottom: 'var(--spacing-xl)'
+      marginBottom: 'var(--spacing-xl)',
+      overflow: 'hidden'
     }}>
+      {/* Background Image */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        zIndex: 0
+      }}>
+        <BlurUpImage 
+          src={image}
+          alt="Hero background"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover'
+          }}
+        />
+      </div>
+
       {/* Overlay */}
       <div className="hero-overlay" style={{
         position: 'absolute',

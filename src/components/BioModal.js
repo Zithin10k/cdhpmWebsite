@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import BlurUpImage from './BlurUpImage';
 
 const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = false }) => {
   // Add window width state for responsive design
@@ -162,18 +163,13 @@ const BioModal = ({ isOpen, onClose, name, title, bio, photo, isTeamMember = fal
                 border: '4px solid rgba(255, 255, 255, 0.8)',
                 boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
               }}>
-                <img 
+                <BlurUpImage 
                   src={photoPath} 
                   alt={name} 
                   style={{ 
                     width: '100%', 
                     height: '100%', 
                     objectFit: 'cover' 
-                  }}
-                  onError={(e) => {
-                    console.error(`Failed to load image: ${photoPath}`);
-                    e.target.onerror = null;
-                    e.target.src = '/assets/images/placeholder-profile.jpg';
                   }}
                 />
               </div>
@@ -260,7 +256,7 @@ BioModal.propTypes = {
   name: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   bio: PropTypes.string.isRequired,
-  photo: PropTypes.string,
+  photo: PropTypes.string.isRequired,
   isTeamMember: PropTypes.bool
 };
 

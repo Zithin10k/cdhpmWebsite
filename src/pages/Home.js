@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Video from '../components/Video';
+import BlurUpImage from '../components/BlurUpImage';
 
 // Responsive styles for news cards
 const newsCardStyle = {
@@ -105,7 +106,11 @@ const Home = () => {
               </div>
             </div>
             <div className="vision-image">
-              <img src="/assets/images/HomePageAboutBanner.png" alt="Digital Health and Precision Medicine" />
+              <BlurUpImage 
+                src="/assets/images/HomePageAboutBanner.png" 
+                alt="Digital Health and Precision Medicine"
+                style={{ width: '100%', height: '100%' }}
+              />
             </div>
           </div>
         </div>

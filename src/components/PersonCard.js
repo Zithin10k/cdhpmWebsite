@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import BioModal from './BioModal';
+import BlurUpImage from './BlurUpImage';
 
 const PersonCard = ({ 
   person,
@@ -20,6 +21,13 @@ const PersonCard = ({
       // For people images, use the photo property directly
       return `/assets/People/IMG/${person.photo}.jpg`;
     }
+  };
+
+  // Function to get the blur image path
+  const getBlurPhotoPath = () => {
+    // Convert the photo name to match the low-res format
+    const blurPhotoName = person.photo.replace(/\.(jpg|jpeg|png)$/i, '');
+    return `/assets/images/low-res/${blurPhotoName}.jpg`;
   };
 
   // Function to handle card click
@@ -82,18 +90,14 @@ const PersonCard = ({
               position: 'relative'
             }}
           >
-            <img 
+            <BlurUpImage 
               src={getPhotoPath()} 
+              blurSrc={getBlurPhotoPath()}
               alt={person.name}
               style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-              }}
-              onError={(e) => {
-                console.error(`Failed to load image: ${getPhotoPath()}`);
-                e.target.onerror = null;
-                e.target.src = '/assets/images/placeholder-profile.jpg';
               }}
             />
           </div>
@@ -234,18 +238,14 @@ const PersonCard = ({
               position: 'relative'
             }}
           >
-            <img 
+            <BlurUpImage 
               src={getPhotoPath()} 
+              blurSrc={getBlurPhotoPath()}
               alt={person.name}
               style={{
                 width: '100%',
                 height: '100%',
                 objectFit: 'cover',
-              }}
-              onError={(e) => {
-                console.error(`Failed to load image: ${getPhotoPath()}`);
-                e.target.onerror = null;
-                e.target.src = '/assets/images/placeholder-profile.jpg';
               }}
             />
           </div>
@@ -385,18 +385,14 @@ const PersonCard = ({
               position: 'relative'
             }}
           >
-            <img 
+            <BlurUpImage 
               src={getPhotoPath()} 
+              blurSrc={getBlurPhotoPath()}
               alt={person.name}
               style={{
                 width: 'auto',
                 height: '100%',
                 objectFit: 'cover',
-              }}
-              onError={(e) => {
-                console.error(`Failed to load image: ${getPhotoPath()}`);
-                e.target.onerror = null;
-                e.target.src = '/assets/images/placeholder-profile.jpg';
               }}
             />
           </div>
@@ -534,18 +530,14 @@ const PersonCard = ({
         }}
       >
         <div style={{ height: '200px', overflow: 'hidden' }}>
-          <img 
+          <BlurUpImage 
             src={getPhotoPath()} 
+            blurSrc={getBlurPhotoPath()}
             alt={person.name}
             style={{
               width: 'auto',
               height: '100%',
               objectFit: 'cover',
-            }}
-            onError={(e) => {
-              console.error(`Failed to load image: ${getPhotoPath()}`);
-              e.target.onerror = null;
-              e.target.src = '/assets/images/placeholder-profile.jpg';
             }}
           />
         </div>

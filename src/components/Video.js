@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import BlurUpImage from './BlurUpImage';
 
 const Video = ({ thumbnailUrl, title, youtubeUrl }) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -41,7 +42,7 @@ const Video = ({ thumbnailUrl, title, youtubeUrl }) => {
       >
         {!isPlaying ? (
           <>
-            <img 
+            <BlurUpImage 
               src={thumbnailUrl} 
               alt={title}
               style={{
