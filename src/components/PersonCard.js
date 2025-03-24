@@ -351,7 +351,7 @@ const PersonCard = ({
           style={{
             width: isTablet ? '100%' : 'calc(50% - 15px)',
             maxWidth: isTablet ? '350px' : '500px',
-            height: isTablet ? '380px' : '450px',
+            height: isTablet ? '480px' : '550px',
             backgroundColor: 'white',
             borderRadius: '8px',
             overflow: 'hidden',
@@ -380,7 +380,7 @@ const PersonCard = ({
             className="person-card-image" 
             style={{
               width: '100%',
-              height: '65%',
+              height: '85%',
               overflow: 'hidden',
               position: 'relative'
             }}
@@ -529,7 +529,7 @@ const PersonCard = ({
           }
         }}
       >
-        <div style={{ height: '200px', overflow: 'hidden' }}>
+        <div style={{ height: '300px', overflow: 'hidden' }}>
           <BlurUpImage 
             src={getPhotoPath()} 
             blurSrc={getBlurPhotoPath()}
