@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 1024);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1164);
   const location = useLocation();
   const isOurPeoplePage = location.pathname === '/our-people';
 
@@ -14,8 +14,8 @@ const NavBar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-      if (window.innerWidth >= 1024) {
+      setIsMobile(window.innerWidth < 1164);
+      if (window.innerWidth >= 1164) {
         setIsOpen(false);
       }
     };
@@ -29,6 +29,7 @@ const NavBar = () => {
   };
 
   const navItems = [
+    { name: 'Home', path: '/' }, 
     { name: 'Research', path: '/research' },
     { name: 'Partnership', path: '/partnership' },
     { name: 'Our People', path: '/our-people' },
@@ -56,21 +57,21 @@ const NavBar = () => {
         <div className="navbar-desktop">
           {!isMobile && (
             <Link to="/" className="navbar-brand">
-              <span className="brand-text" style={{ 
-                color: 'var(--color-blue)', 
-                fontFamily: 'var(--font-primary)', 
+              <span className="brand-text" style={{
+                color: 'var(--color-blue)',
+                fontFamily: 'var(--font-primary)',
                 fontSize: '1.8rem',
                 fontWeight: '700'
               }}>CDHPM</span>
             </Link>
           )}
-          
+
           {!isMobile && (
             <ul className="navbar-nav">
               {navItems.map((item, index) => (
                 <li key={index} className="nav-item">
-                  <Link 
-                    to={item.path} 
+                  <Link
+                    to={item.path}
                     className={`nav-link ${isActive(item.path) ? 'active' : ''}`}
                   >
                     {item.name}
@@ -79,14 +80,14 @@ const NavBar = () => {
               ))}
             </ul>
           )}
-          
+
           <Link to="/" className="navbar-logo">
             <img src="/assets/images/Logo.png" alt="CDHPM Logo" style={{ height: '50px' }} />
           </Link>
-          
+
           {isMobile && (
-            <button 
-              className="hamburger-menu" 
+            <button
+              className="hamburger-menu"
               onClick={toggleMenu}
               aria-label="Toggle navigation menu"
             >
@@ -94,15 +95,15 @@ const NavBar = () => {
             </button>
           )}
         </div>
-        
+
         {/* Mobile Navigation Menu */}
         {isMobile && (
           <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
             <ul className="mobile-nav">
               {navItems.map((item, index) => (
                 <li key={index} className="mobile-nav-item">
-                  <Link 
-                    to={item.path} 
+                  <Link
+                    to={item.path}
                     className={`mobile-nav-link ${isActive(item.path) ? 'active' : ''}`}
                     onClick={() => setIsOpen(false)}
                   >

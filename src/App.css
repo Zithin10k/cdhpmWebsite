@@ -366,7 +366,7 @@ h1 {
 }
 
 /* Media Queries */
-@media (min-width: 1024px) {
+@media (min-width: 1164px) {
   .navbar-container {
     flex-direction: row;
   }
@@ -384,7 +384,7 @@ h1 {
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1123px) {
   .navbar-desktop {
     justify-content: space-between;
     padding: 0 var(--spacing-md);
