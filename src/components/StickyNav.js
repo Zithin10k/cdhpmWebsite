@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
+const StickyNav = ({ sections, activeSection, onSectionClick, isMobile, onStickyChange }) => {
   const [isAtTop, setIsAtTop] = useState(true);
   const [isSticky, setIsSticky] = useState(false);
   const navigate = useNavigate();
@@ -37,7 +37,12 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
       const stickyNav = document.querySelector('.sticky-nav');
       if (stickyNav) {
         const stickyPosition = stickyNav.getBoundingClientRect().top;
-        setIsSticky(stickyPosition <= 0);
+        const newIsSticky = stickyPosition <= 0;
+        setIsSticky(newIsSticky);
+        // Notify parent component of sticky state change
+        if (onStickyChange) {
+          onStickyChange(newIsSticky);
+        }
       }
     };
 
@@ -57,7 +62,7 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
         navbar.style.opacity = '1';
       }
     };
-  }, []);
+  }, [onStickyChange]);
 
   // Handle section selection and URL update
   const handleSectionSelect = (sectionId, event) => {
@@ -170,16 +175,15 @@ const StickyNav = ({ sections, activeSection, onSectionClick, isMobile }) => {
 };
 
 StickyNav.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      ref: PropTypes.object
-    })
-  ).isRequired,
+  sections: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    ref: PropTypes.object
+  })).isRequired,
   activeSection: PropTypes.string,
   onSectionClick: PropTypes.func.isRequired,
-  isMobile: PropTypes.bool.isRequired
+  isMobile: PropTypes.bool.isRequired,
+  onStickyChange: PropTypes.func
 };
 
 export default StickyNav; 

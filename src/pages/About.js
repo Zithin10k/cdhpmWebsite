@@ -12,11 +12,11 @@ const About = () => {
       transition={{ duration: 0.5 }}
     >
       <Hero 
-        image="/assets/images/HomePageAboutBanner.webp"
+        image="/assets/images/AboutBanner.jpeg"
         mainText="About CDHPM"
         subText="Learn about our mission, vision, and the team behind the Centre for Digital Health and Precision Medicine"
         height="500px"
-        overlayColor="rgba(0, 121, 160, 0.4)"
+        overlayColor="rgba(0, 0, 0, 0.4)"
       />
       
       <div className="container">

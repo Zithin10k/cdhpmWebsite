@@ -10,6 +10,7 @@ const OurPeople = () => {
   const [loading, setLoading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
   const [activeSection, setActiveSection] = useState(null);
+  const [isStickyNavActive, setIsStickyNavActive] = useState(false);
   const location = useLocation();
   const { sectionId } = useParams();
 
@@ -148,6 +149,14 @@ const OurPeople = () => {
     }
   };
 
+  // Handle back to top click
+  const handleBackToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   // Get team collage styles based on screen size
   const getTeamCollageStyles = () => {
     // Base styles for all screen sizes
@@ -267,7 +276,7 @@ const OurPeople = () => {
       ) : peopleData && (
         <>
           <Hero 
-            image="/assets/images/OurPeople.webp"
+            image="/assets/images/OurPeopleBanner.jpeg"
             mainText={peopleData.pageTitle}
             subText={peopleData.pageDescription}
             height={windowWidth <= 768 ? '400px' : '600px'}
@@ -283,7 +292,66 @@ const OurPeople = () => {
             activeSection={activeSection}
             onSectionClick={handleSectionClick}
             isMobile={windowWidth <= 768}
+            onStickyChange={setIsStickyNavActive}
           />
+
+          {/* Back to Top Button */}
+          {isStickyNavActive && (
+            <button
+              onClick={handleBackToTop}
+              style={{
+                position: 'fixed',
+                bottom: '30px',
+                right: '30px',
+                backgroundColor: 'var(--color-primary)',
+                color: 'white',
+                border: 'none',
+                borderRadius: '25px',
+                padding: '12px 20px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                cursor: 'pointer',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                zIndex: 1000,
+                transition: 'all 0.3s ease',
+                opacity: 0.8,
+                fontFamily: 'var(--font-primary)',
+                fontSize: 'var(--font-size-base)',
+                fontWeight: '500'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.opacity = '1';
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 6px 12px rgba(0, 0, 0, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.opacity = '0.8';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+              }}
+            >
+              <span>Back to Top</span>
+              <svg 
+                width="20" 
+                height="20" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                xmlns="http://www.w3.org/2000/svg"
+                style={{
+                  transform: 'rotate(-90deg)'
+                }}
+              >
+                <path 
+                  d="M9 5L16 12L9 19" 
+                  stroke="white" 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          )}
 
           <div className="people-sections" style={{ 
             padding: windowWidth <= 768 

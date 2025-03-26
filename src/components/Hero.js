@@ -7,7 +7,7 @@ const Hero = ({
   mainText, 
   subText, 
   height = '500px',
-  overlayColor = 'rgba(0, 0, 0, 0.3)',
+  overlayColor = 'rgba(0, 0, 0, 0.47)',
   textPosition = 'center',
   textColor = 'white'
 }) => {

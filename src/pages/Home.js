@@ -99,8 +99,8 @@ const Home = () => {
               </div>
             </div>
             <div className="vision-image">
-              <BlurUpImage 
-                src="/assets/images/HomePageAboutBanner.webp" 
+              <img
+                src="/assets/images/HomeAboutSection.jpeg" 
                 alt="Digital Health and Precision Medicine"
                 style={{ width: '100%', height: '100%' }}
               />
