@@ -12,7 +12,7 @@ const About = () => {
       transition={{ duration: 0.5 }}
     >
       <Hero 
-        image="/assets/images/HomePageAboutBanner.png"
+        image="/assets/images/HomePageAboutBanner.webp"
         mainText="About CDHPM"
         subText="Learn about our mission, vision, and the team behind the Centre for Digital Health and Precision Medicine"
         height="500px"

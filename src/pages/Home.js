@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Video from '../components/Video';
@@ -78,15 +77,9 @@ const Home = () => {
   }, []);
 
   return (
-    <motion.div 
-      className="page page-with-hero"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="page page-with-hero">
       <Hero 
-        image="/assets/images/HomePageBanner.jpg"
+        image="/assets/images/HomePageBanner.webp"
         mainText="Centre for Digital Health and Precision Medicine"
         subText="Transforming the future of healthcare through data and AI driven technology"
         height="600px"
@@ -107,7 +100,7 @@ const Home = () => {
             </div>
             <div className="vision-image">
               <BlurUpImage 
-                src="/assets/images/HomePageAboutBanner.png" 
+                src="/assets/images/HomePageAboutBanner.webp" 
                 alt="Digital Health and Precision Medicine"
                 style={{ width: '100%', height: '100%' }}
               />
@@ -133,7 +126,7 @@ const Home = () => {
             <div className="news-card" style={responsiveStyles.newsCard}>
               <div className="news-card-video" style={responsiveStyles.newsCardVideo}>
                 <Video 
-                  thumbnailUrl="/assets/images/HomePageNew1.png"
+                  thumbnailUrl="/assets/images/HomePageNew1.webp"
                   title="Prof Sir Nilesh Samani"
                   youtubeUrl="https://www.youtube.com/watch?v=FEOIeBVOnaE"
                 />
@@ -163,7 +156,7 @@ const Home = () => {
             <div className="news-card" style={responsiveStyles.newsCard}>
               <div className="news-card-video" style={responsiveStyles.newsCardVideo}>
                 <Video 
-                  thumbnailUrl="/assets/images/HomePageNews2.png"
+                  thumbnailUrl="/assets/images/HomePageNews2.webp"
                   title="Dr Sujoy Karat"
                   youtubeUrl="https://www.youtube.com/watch?v=3d1Xrh89LGI"
                 />
@@ -206,7 +199,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

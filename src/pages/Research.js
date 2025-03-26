@@ -12,7 +12,7 @@ const Research = () => {
       transition={{ duration: 0.5 }}
     >
       <Hero 
-        image="/assets/images/Research.jpg"
+        image="/assets/images/Research.webp"
         mainText="Research Initiatives"
         subText="Exploring innovative approaches to digital health and precision medicine to transform healthcare"
         height="450px"

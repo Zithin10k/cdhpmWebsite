@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import PersonCard from '../components/PersonCard';
 import QuotedTagline from '../components/QuotedTagline';
@@ -256,13 +255,7 @@ const OurPeople = () => {
   };
 
   return (
-    <motion.div 
-      className="page"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="page">
       {loading ? (
         <div style={{ 
           display: 'flex', 
@@ -274,7 +267,7 @@ const OurPeople = () => {
       ) : peopleData && (
         <>
           <Hero 
-            image={peopleData.heroImage}
+            image="/assets/images/OurPeople.webp"
             mainText={peopleData.pageTitle}
             subText={peopleData.pageDescription}
             height={windowWidth <= 768 ? '400px' : '600px'}
@@ -365,7 +358,7 @@ const OurPeople = () => {
           </div>
         </>
       )}
-    </motion.div>
+    </div>
   );
 };
 

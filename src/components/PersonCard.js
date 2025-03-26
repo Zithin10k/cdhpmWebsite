@@ -16,10 +16,10 @@ const PersonCard = ({
   const getPhotoPath = () => {
     // Use the photo property directly as it's already in the correct format in the JSON
     if (person.photoSource === 'leadership') {
-      return `/assets/leadership/img/${person.photo}.jpg`;
+      return `/assets/leadership/img/${person.photo}.webp`;
     } else {
       // For people images, use the photo property directly
-      return `/assets/People/IMG/${person.photo}.jpg`;
+      return `/assets/People/IMG/${person.photo}.webp`;
     }
   };
 
@@ -27,11 +27,15 @@ const PersonCard = ({
   const getBlurPhotoPath = () => {
     // Convert the photo name to match the low-res format
     const blurPhotoName = person.photo.replace(/\.(jpg|jpeg|png)$/i, '');
-    return `/assets/images/low-res/${blurPhotoName}.jpg`;
+    return `/assets/images/low-res/${blurPhotoName}.webp`;
   };
 
   // Function to handle card click
-  const handleCardClick = () => {
+  const handleCardClick = (e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     setIsModalOpen(true);
   };
 
@@ -155,7 +159,7 @@ const PersonCard = ({
             </p>
             
             <button
-              onClick={handleCardClick}
+              onClick={(e) => handleCardClick(e)}
               style={{
                 alignSelf: 'flex-start',
                 padding: '10px 20px',
@@ -303,7 +307,7 @@ const PersonCard = ({
             </p>
             
             <button
-              onClick={handleCardClick}
+              onClick={(e) => handleCardClick(e)}
               style={{
                 alignSelf: 'flex-start',
                 padding: '10px 20px',
@@ -456,7 +460,7 @@ const PersonCard = ({
             </p>
             
             <button
-              onClick={handleCardClick}
+              onClick={(e) => handleCardClick(e)}
               style={{
                 alignSelf: 'flex-start',
                 marginTop: 'auto',
@@ -569,7 +573,7 @@ const PersonCard = ({
           </p>
           
           <button
-            onClick={handleCardClick}
+            onClick={(e) => handleCardClick(e)}
             style={{
               marginTop: 'auto',
               padding: '8px 15px',

@@ -13,7 +13,7 @@ const Partnership = () => {
     >
       {/* Hero Section */}
       <Hero 
-        image="/assets/images/partnerBanner.png"
+        image="/assets/images/partnerBanner.webp"
         mainText="Strategic Partnerships"
         subText="Collaborating for innovation and impact in healthcare"
         height="500px"

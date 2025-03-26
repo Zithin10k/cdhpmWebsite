@@ -65,7 +65,7 @@ const ContactUs = () => {
     >
       {/* Hero Section */}
       <Hero 
-        image="/assets/images/contact_us.jpeg"
+        image="/assets/images/contact_us.webp"
         mainText="Contact Us"
         subText="Get in touch with our team"
         height="500px"

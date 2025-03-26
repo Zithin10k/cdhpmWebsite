@@ -69,7 +69,7 @@ const WorkWithUs = () => {
     >
       {/* Hero Section */}
       <Hero 
-        image="/assets/images/Work_with_us.jpg"
+        image="/assets/images/Work_with_us.webp"
         mainText="Work With Us"
         subText="Partner with CDHPM on innovative healthcare projects"
         height="500px"
@@ -85,23 +85,26 @@ const WorkWithUs = () => {
               <p className="inquiry-text">
                 The Centre for Digital Health and Precision Medicine (CDHPM) is dedicated to advancing healthcare 
                 through innovative research and technology. We welcome collaboration opportunities with researchers, 
-                healthcare providers, and industry partners.
-              </p>
-              <p className="inquiry-text">
-                Please fill out the form below to submit your project inquiry. Our team will review your submission 
-                and contact you to discuss potential collaboration opportunities.
+                healthcare providers, Academic Institutions and industry partners.
               </p>
               <div className="inquiry-benefits">
                 <h3 className="benefits-title">Benefits of Collaboration</h3>
                 <ul className="benefits-list">
-                  <li>Access to cutting-edge digital health technologies</li>
-                  <li>Expertise in precision medicine research</li>
-                  <li>Multidisciplinary team of healthcare professionals</li>
-                  <li>State-of-the-art facilities and resources</li>
-                  <li>Established partnerships with leading institutions</li>
+                  <li>Pending...</li>
                 </ul>
               </div>
             </div>
+              <p className="inquiry-text">
+              Please complete the attached form, to outline the nature of the collaboration you are proposing.
+              If you would like to discuss your potential collaboration before completing this form, then please contact one of the individuals below
+              </p>
+              <div>
+              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Dr. Nilesh Samani</a>
+              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Dr. Sujoy Kar</a>
+              </div>
+              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Dr. Lokesh Ravi</a>
+              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Mr. Jamie Sharp</a>
+
             
             <div className="inquiry-form-container">
               <h2 className="form-title">Project Inquiry Form</h2>

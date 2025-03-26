@@ -1354,3 +1354,20 @@ h1 {
     font-size: var(--font-size-sm);
   }
 }
+
+/* Modal z-index fix for popup */
+.bio-modal-overlay {
+  z-index: 9999 !important;
+  position: fixed !important;
+}
+
+/* Prevent body from scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* Keep only necessary modal styles */
+.bio-modal-content {
+  will-change: transform;
+  backface-visibility: hidden;
+}
