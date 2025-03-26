@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
+import '../styles/WorkWithUs.css';
 
 const WorkWithUs = () => {
   const [formData, setFormData] = useState({
@@ -80,32 +81,48 @@ const WorkWithUs = () => {
       <section className="section project-inquiry-section">
         <div className="container">
           <div className="project-inquiry-content">
-            <div className="inquiry-info">
-              <h2 className="section-title text-left">Collaborate With CDHPM</h2>
+            <div className="left-content">
+              <div className="inquiry-info">
+                <h2 className="section-title text-left">Collaborate With CDHPM</h2>
+                <p className="inquiry-text">
+                  The Centre for Digital Health and Precision Medicine (CDHPM) is dedicated to advancing healthcare 
+                  through innovative research and technology. We welcome collaboration opportunities with researchers, 
+                  healthcare providers, Academic Institutions and industry partners.
+                </p>
+                <div className="inquiry-benefits">
+                  <h3 className="benefits-title">Benefits of Collaboration</h3>
+                  <ul className="benefits-list">
+                    <li>Pending...</li>
+                  </ul>
+                </div>
+              </div>
               <p className="inquiry-text">
-                The Centre for Digital Health and Precision Medicine (CDHPM) is dedicated to advancing healthcare 
-                through innovative research and technology. We welcome collaboration opportunities with researchers, 
-                healthcare providers, Academic Institutions and industry partners.
+                Please complete the attached form, to outline the nature of the collaboration you are proposing.
+                If you would like to discuss your potential collaboration before completing this form, then please contact one of the individuals below
               </p>
-              <div className="inquiry-benefits">
-                <h3 className="benefits-title">Benefits of Collaboration</h3>
-                <ul className="benefits-list">
-                  <li>Pending...</li>
-                </ul>
+              <div className="contact-section">
+                <h3 className="contact-title">Contact Information</h3>
+                <div className="contact-list">
+                  <div className="contact-item">
+                    <span className="contact-name">Dr. Nilesh Samani</span>
+                    <a href="mailto:njs@le.ac.uk" className="contact-email">njs@le.ac.uk</a>
+                  </div>
+                  <div className="contact-item">
+                    <span className="contact-name">Dr. Sujoy Kar</span>
+                    <a href="mailto:example@example.com" className="contact-email">example@example.com</a>
+                  </div>
+                  <div className="contact-item">
+                    <span className="contact-name">Dr. Lokesh Ravi</span>
+                    <a href="mailto:example@exaple.com" className="contact-email">example@exaple.com</a>
+                  </div>
+                  <div className="contact-item">
+                    <span className="contact-name">Mr. Jamie Sharp</span>
+                    <a href="mailto:example@exaple.com" className="contact-email">example@exaple.com</a>
+                  </div>
+                </div>
               </div>
             </div>
-              <p className="inquiry-text">
-              Please complete the attached form, to outline the nature of the collaboration you are proposing.
-              If you would like to discuss your potential collaboration before completing this form, then please contact one of the individuals below
-              </p>
-              <div>
-              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Dr. Nilesh Samani</a>
-              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Dr. Sujoy Kar</a>
-              </div>
-              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Dr. Lokesh Ravi</a>
-              <a href="mailto:info@cdhpm.ac.uk" className="btn btn-primary">Mr. Jamie Sharp</a>
 
-            
             <div className="inquiry-form-container">
               <h2 className="form-title">Project Inquiry Form</h2>
               {formStatus.submitted && (

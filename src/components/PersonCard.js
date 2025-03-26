@@ -389,14 +389,13 @@ const PersonCard = ({
               position: 'relative'
             }}
           >
-            <BlurUpImage 
+            <img 
               src={getPhotoPath()} 
-              blurSrc={getBlurPhotoPath()}
               alt={person.name}
               style={{
                 width: 'auto',
                 height: '100%',
-                objectFit: 'cover',
+                objectFit: 'contain',
               }}
             />
           </div>
