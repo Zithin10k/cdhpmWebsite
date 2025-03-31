@@ -5,12 +5,13 @@ import '../styles/WorkWithUs.css';
 
 const WorkWithUs = () => {
   const [formData, setFormData] = useState({
-    principalInvestigator: '',
+    principalInvestigators: '',
+    principalInvestigatorsEmail: '',
+    teamMembers: '',
     projectTitle: '',
     projectDescription: '',
-    scope: '',
-    stakeholders: '',
-    supportNeeded: ''
+    dataRequired: '',
+    anticipatedOutcome: ''
   });
   const [formStatus, setFormStatus] = useState({
     submitted: false,
@@ -33,16 +34,17 @@ const WorkWithUs = () => {
     setFormStatus({
       submitted: true,
       success: true,
-      message: 'Thank you for your project inquiry. Our team will review your submission and get back to you soon!'
+      message: 'Thank you for your concept proposal. The CDHPM Executive will review your submission and get in touch with you about next steps.'
     });
     // Reset form after submission
     setFormData({
-      principalInvestigator: '',
+      principalInvestigators: '',
+      principalInvestigatorsEmail: '',
+      teamMembers: '',
       projectTitle: '',
       projectDescription: '',
-      scope: '',
-      stakeholders: '',
-      supportNeeded: ''
+      dataRequired: '',
+      anticipatedOutcome: ''
     });
   };
 
@@ -97,14 +99,13 @@ const WorkWithUs = () => {
                 </div>
               </div>
               <p className="inquiry-text">
-                Please complete the attached form, to outline the nature of the collaboration you are proposing.
                 If you would like to discuss your potential collaboration before completing this form, then please contact one of the individuals below
               </p>
               <div className="contact-section">
                 <h3 className="contact-title">Contact Information</h3>
                 <div className="contact-list">
                   <div className="contact-item">
-                    <span className="contact-name">Dr. Nilesh Samani</span>
+                    <span className="contact-name">Professor Sir Nilesh Samani</span>
                     <a href="mailto:njs@le.ac.uk" className="contact-email">njs@le.ac.uk</a>
                   </div>
                   <div className="contact-item">
@@ -124,7 +125,7 @@ const WorkWithUs = () => {
             </div>
 
             <div className="inquiry-form-container">
-              <h2 className="form-title">Project Inquiry Form</h2>
+              <h2 className="form-title">Concept Proposal</h2>
               {formStatus.submitted && (
                 <div className={`form-message ${formStatus.success ? 'success' : 'error'}`}>
                   {formStatus.message}
@@ -132,84 +133,98 @@ const WorkWithUs = () => {
               )}
               <form className="inquiry-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="principalInvestigator">Principal Investigator (PI)</label>
+                  <label htmlFor="principalInvestigators">Names of Principal Investigator(s)</label>
                   <input
                     type="text"
-                    id="principalInvestigator"
-                    name="principalInvestigator"
-                    value={formData.principalInvestigator}
+                    id="principalInvestigators"
+                    name="principalInvestigators"
+                    value={formData.principalInvestigators}
                     onChange={handleChange}
-                    placeholder="Enter the name of the Principal Investigator"
+                    placeholder="E.g: Dr. Nilesh Samani; Dr. Sujoy Kar; etc."
                     required
                   />
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="projectTitle">Project Title</label>
+                  <label htmlFor="principalInvestigatorsEmail">Email ID of Principal Investigator(s)</label>
+                  <input
+                    type="text"
+                    id="principalInvestigatorsEmail"
+                    name="principalInvestigatorsEmail"
+                    value={formData.principalInvestigatorsEmail}
+                    onChange={handleChange}
+                    placeholder="E.g: principal_investigator@example.com"
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="teamMembers">Other Team Members, Stakeholders & Collaborators</label>
+                  <input
+                    type="text"
+                    id="teamMembers"
+                    name="teamMembers"
+                    value={formData.teamMembers}
+                    onChange={handleChange}
+                    placeholder="E.g: Dr. Nilesh Samani; Dr. Sujoy Kar; etc."
+                    required
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label htmlFor="projectTitle">Title of the Project</label>
                   <input
                     type="text"
                     id="projectTitle"
                     name="projectTitle"
                     value={formData.projectTitle}
                     onChange={handleChange}
-                    placeholder="Enter the title of your project"
+                    placeholder="E.g: Development of Machine Learning Model for Glioblastoma Prediction & Scoring"
                     required
                   />
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="projectDescription">Project Description</label>
+                  <label htmlFor="projectDescription">Project Description (500 words)</label>
                   <textarea
                     id="projectDescription"
                     name="projectDescription"
-                    rows="5"
+                    rows="8"
                     value={formData.projectDescription}
                     onChange={handleChange}
-                    placeholder="Provide a detailed description of your project"
+                    placeholder="Describe the project with its key concepts, focusing on the uniqueness, novelty and demand for the proposed project."
                     required
                   ></textarea>
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="scope">Scope</label>
+                  <label htmlFor="dataRequired">Types of Data Required</label>
                   <textarea
-                    id="scope"
-                    name="scope"
+                    id="dataRequired"
+                    name="dataRequired"
                     rows="3"
-                    value={formData.scope}
+                    value={formData.dataRequired}
                     onChange={handleChange}
-                    placeholder="Define the scope of your project"
+                    placeholder="E.g: Skull X-Rays of Glioblastoma; MRI of Glioblastoma"
                     required
                   ></textarea>
                 </div>
                 
                 <div className="form-group">
-                  <label htmlFor="stakeholders">Stakeholders</label>
+                  <label htmlFor="anticipatedOutcome">Anticipated Outcome</label>
                   <textarea
-                    id="stakeholders"
-                    name="stakeholders"
+                    id="anticipatedOutcome"
+                    name="anticipatedOutcome"
                     rows="3"
-                    value={formData.stakeholders}
+                    value={formData.anticipatedOutcome}
                     onChange={handleChange}
-                    placeholder="List all stakeholders involved in the project"
+                    placeholder="E.g: ML Model for Glioblastoma Prediction, etc."
                     required
                   ></textarea>
                 </div>
                 
-                <div className="form-group">
-                  <label htmlFor="supportNeeded">CDHPM Support Needed</label>
-                  <textarea
-                    id="supportNeeded"
-                    name="supportNeeded"
-                    rows="4"
-                    value={formData.supportNeeded}
-                    onChange={handleChange}
-                    placeholder="Describe what support you are expecting from CDHPM"
-                    required
-                  ></textarea>
-                </div>
-                
-                <button type="submit" className="btn btn-primary">Submit Project Inquiry</button>
+              <p className="form-footer"> <i>Following this submission, the CDHPM Executive will consider the Concept Form and get in touch with you about next steps.</i></p>
+                <button type="submit" className="btn btn-primary">Submit Concept Proposal</button>
               </form>
             </div>
           </div>

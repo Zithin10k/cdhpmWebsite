@@ -116,7 +116,7 @@ const Home = () => {
       }}>
         <div className="container">
           <h2 style={responsiveStyles.sectionTitle}>
-            Latest News
+            Our Mission
           </h2>
           <div style={responsiveStyles.divider}></div>
           
@@ -183,20 +183,7 @@ const Home = () => {
             </div>
           </div>
           
-          {/* View All News Button */}
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <Link to="/news" className="btn" style={{ 
-              backgroundColor: 'var(--color-primary, #0056b3)', 
-              color: 'white',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              fontWeight: '500',
-              display: 'inline-block'
-            }}>
-              View All News
-            </Link>
-          </div>
+
         </div>
       </div>
     </div>

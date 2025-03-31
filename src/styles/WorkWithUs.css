@@ -222,6 +222,11 @@
   content: "✉";
   font-size: 1.1rem;
 }
+.form-footer{
+  margin: 2rem 0;
+  text-align: left;
+}
+
 
 @media (max-width: 768px) {
   .contact-list {
