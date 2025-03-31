@@ -256,9 +256,19 @@ const Research = () => {
             transition={{ duration: 0.9 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <div className="concept-form-wrapper">
-              {/* Abstract Art Container */}
-              <div className="abstract-art-container">
+            <motion.div 
+              className="concept-form-wrapper"
+              initial={{ y: 20 }}
+              whileInView={{ y: 0 }}
+              transition={{ type: "spring", stiffness: 100, damping: 15, delay: 0.2 }}
+              whileHover={{ y: -5 }}
+            >
+              {/* Abstract Art Container with connecting elements */}
+              <motion.div 
+                className="abstract-art-container"
+                whileHover={{ scale: 1.01 }}
+                transition={{ duration: 0.4 }}
+              >
                 <div className="abstract-shape abstract-shape-1"></div>
                 <div className="abstract-shape abstract-shape-2"></div>
                 <div className="abstract-shape abstract-shape-3"></div>
@@ -267,18 +277,27 @@ const Research = () => {
                 <div className="abstract-line abstract-line-2"></div>
                 <div className="abstract-circle abstract-circle-1"></div>
                 <div className="abstract-circle abstract-circle-2"></div>
-              </div>
-              
-              <div className="concept-form-title-container">
-                <h2 className="concept-form-main-title">Concept Proposal Form</h2>
-                <p className="concept-form-subtitle">Submit your research concept proposal for consideration by our team.</p>
-              </div>
+                
+                {/* Additional decorative elements */}
+                <div className="abstract-accent abstract-accent-1"></div>
+                <div className="abstract-accent abstract-accent-2"></div>
+                <div className="abstract-dot-grid"></div>
+                
+                {/* Connecting elements */}
+                <div className="connector-line connector-line-center"></div>
+                <div className="connector-dot connector-dot-1"></div>
+                
+                {/* Form title within abstract art */}
+                <div className="art-title-container">
+                  <h2 className="concept-form-main-title">Concept Proposal Form</h2>
+                  <p className="concept-form-subtitle">Submit your research concept proposal for consideration by our team.</p>
+                </div>
+              </motion.div>
               
               {/* Toggle Button for Expanding/Collapsing Form */}
               <motion.button 
                 className="form-toggle-button"
                 onClick={() => setIsFormExpanded(!isFormExpanded)}
-                whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 aria-expanded={isFormExpanded}
               >
@@ -292,156 +311,159 @@ const Research = () => {
                 </motion.div>
               </motion.button>
               
-              {/* Collapsible Form */}
-              <AnimatePresence>
-                {isFormExpanded && (
-                  <motion.div 
-                    className="form-container"
-                    initial={{ opacity: 0, height: 0, overflow: "hidden" }}
-                    animate={{ opacity: 1, height: "auto", overflow: "visible" }}
-                    exit={{ opacity: 0, height: 0, overflow: "hidden" }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                  >
-                    <form className="concept-proposal-form" onSubmit={handleSubmit}>                  
-                      <div className="form-flex-row">
+              {/* Form container with simplified animation */}
+              <div style={{ overflow: 'hidden' }}>
+                <AnimatePresence initial={false}>
+                  {isFormExpanded && (
+                    <motion.div 
+                      className="form-container"
+                      key="form-container"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    >
+                      <form className="concept-proposal-form" onSubmit={handleSubmit}>                  
+                        <div className="form-flex-row">
+                          <div className="form-group">
+                            <label htmlFor="principalInvestigators">
+                              <FiUserPlus className="form-icon" />
+                              <span>Principal Investigator(s)</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="principalInvestigators"
+                              name="principalInvestigators"
+                              value={formData.principalInvestigators}
+                              onChange={handleChange}
+                              placeholder="E.g: Dr. Nilesh Samani; Dr. Sujoy Kar"
+                              required
+                              className="form-input"
+                            />
+                          </div>
+                          
+                          <div className="form-group">
+                            <label htmlFor="principalInvestigatorsEmail">
+                              <FiMail className="form-icon" />
+                              <span>Email ID</span>
+                            </label>
+                            <input
+                              type="email"
+                              id="principalInvestigatorsEmail"
+                              name="principalInvestigatorsEmail"
+                              value={formData.principalInvestigatorsEmail}
+                              onChange={handleChange}
+                              placeholder="principal_investigator@example.com"
+                              required
+                              className="form-input"
+                            />
+                          </div>
+                        </div>
+                        
                         <div className="form-group">
-                          <label htmlFor="principalInvestigators">
-                            <FiUserPlus className="form-icon" />
-                            <span>Principal Investigator(s)</span>
+                          <label htmlFor="teamMembers">
+                            <FiUsers className="form-icon" />
+                            <span>Team Members, Stakeholders & Collaborators</span>
                           </label>
                           <input
                             type="text"
-                            id="principalInvestigators"
-                            name="principalInvestigators"
-                            value={formData.principalInvestigators}
+                            id="teamMembers"
+                            name="teamMembers"
+                            value={formData.teamMembers}
                             onChange={handleChange}
-                            placeholder="E.g: Dr. Nilesh Samani; Dr. Sujoy Kar"
+                            placeholder="List all team members involved in the project"
                             required
                             className="form-input"
                           />
                         </div>
                         
                         <div className="form-group">
-                          <label htmlFor="principalInvestigatorsEmail">
-                            <FiMail className="form-icon" />
-                            <span>Email ID</span>
+                          <label htmlFor="projectTitle">
+                            <FiFileText className="form-icon" />
+                            <span>Project Title</span>
                           </label>
                           <input
-                            type="email"
-                            id="principalInvestigatorsEmail"
-                            name="principalInvestigatorsEmail"
-                            value={formData.principalInvestigatorsEmail}
+                            type="text"
+                            id="projectTitle"
+                            name="projectTitle"
+                            value={formData.projectTitle}
                             onChange={handleChange}
-                            placeholder="principal_investigator@example.com"
+                            placeholder="E.g: Development of Machine Learning Model for Glioblastoma Prediction"
                             required
                             className="form-input"
                           />
                         </div>
-                      </div>
-                      
-                      <div className="form-group">
-                        <label htmlFor="teamMembers">
-                          <FiUsers className="form-icon" />
-                          <span>Team Members, Stakeholders & Collaborators</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="teamMembers"
-                          name="teamMembers"
-                          value={formData.teamMembers}
-                          onChange={handleChange}
-                          placeholder="List all team members involved in the project"
-                          required
-                          className="form-input"
-                        />
-                      </div>
-                      
-                      <div className="form-group">
-                        <label htmlFor="projectTitle">
-                          <FiFileText className="form-icon" />
-                          <span>Project Title</span>
-                        </label>
-                        <input
-                          type="text"
-                          id="projectTitle"
-                          name="projectTitle"
-                          value={formData.projectTitle}
-                          onChange={handleChange}
-                          placeholder="E.g: Development of Machine Learning Model for Glioblastoma Prediction"
-                          required
-                          className="form-input"
-                        />
-                      </div>
-                      
-                      <div className="form-group">
-                        <label htmlFor="projectDescription">
-                          <FiClipboard className="form-icon" />
-                          <span>Project Description (500 words)</span>
-                        </label>
-                        <textarea
-                          id="projectDescription"
-                          name="projectDescription"
-                          rows="6"
-                          value={formData.projectDescription}
-                          onChange={handleChange}
-                          placeholder="Describe the project with its key concepts, focusing on uniqueness, novelty and demand for the proposed project."
-                          required
-                          className="form-input form-textarea"
-                        ></textarea>
-                      </div>
-                      
-                      <div className="form-flex-row">
+                        
                         <div className="form-group">
-                          <label htmlFor="dataRequired">
-                            <FiDatabase className="form-icon" />
-                            <span>Types of Data Required</span>
+                          <label htmlFor="projectDescription">
+                            <FiClipboard className="form-icon" />
+                            <span>Project Description (500 words)</span>
                           </label>
                           <textarea
-                            id="dataRequired"
-                            name="dataRequired"
-                            rows="3"
-                            value={formData.dataRequired}
+                            id="projectDescription"
+                            name="projectDescription"
+                            rows="6"
+                            value={formData.projectDescription}
                             onChange={handleChange}
-                            placeholder="E.g: Skull X-Rays of Glioblastoma; MRI of Glioblastoma"
+                            placeholder="Describe the project with its key concepts, focusing on uniqueness, novelty and demand for the proposed project."
                             required
                             className="form-input form-textarea"
                           ></textarea>
                         </div>
                         
-                        <div className="form-group">
-                          <label htmlFor="anticipatedOutcome">
-                            <FiTarget className="form-icon" />
-                            <span>Anticipated Outcome</span>
-                          </label>
-                          <textarea
-                            id="anticipatedOutcome"
-                            name="anticipatedOutcome"
-                            rows="3"
-                            value={formData.anticipatedOutcome}
-                            onChange={handleChange}
-                            placeholder="E.g: ML Model for Glioblastoma Prediction"
-                            required
-                            className="form-input form-textarea"
-                          ></textarea>
+                        <div className="form-flex-row">
+                          <div className="form-group">
+                            <label htmlFor="dataRequired">
+                              <FiDatabase className="form-icon" />
+                              <span>Types of Data Required</span>
+                            </label>
+                            <textarea
+                              id="dataRequired"
+                              name="dataRequired"
+                              rows="3"
+                              value={formData.dataRequired}
+                              onChange={handleChange}
+                              placeholder="E.g: Skull X-Rays of Glioblastoma; MRI of Glioblastoma"
+                              required
+                              className="form-input form-textarea"
+                            ></textarea>
+                          </div>
+                          
+                          <div className="form-group">
+                            <label htmlFor="anticipatedOutcome">
+                              <FiTarget className="form-icon" />
+                              <span>Anticipated Outcome</span>
+                            </label>
+                            <textarea
+                              id="anticipatedOutcome"
+                              name="anticipatedOutcome"
+                              rows="3"
+                              value={formData.anticipatedOutcome}
+                              onChange={handleChange}
+                              placeholder="E.g: ML Model for Glioblastoma Prediction"
+                              required
+                              className="form-input form-textarea"
+                            ></textarea>
+                          </div>
                         </div>
-                      </div>
-                      
-                      <p className="form-note"><span className="note-highlight">Note:</span> Following this submission, the CDHPM Executive will review your proposal and contact you about next steps.</p>
-                      
-                      <motion.button 
-                        type="submit" 
-                        className="submit-button"
-                        whileHover={{ scale: 1.03 }}
-                        whileTap={{ scale: 0.97 }}
-                      >
-                        <span>Submit Proposal</span>
-                        <FiSend className="button-icon" />
-                      </motion.button>
-                    </form>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+                        
+                        <p className="form-note"><span className="note-highlight">Note:</span> Following this submission, the CDHPM Executive will review your proposal and contact you about next steps.</p>
+                        
+                        <motion.button 
+                          type="submit" 
+                          className="submit-button"
+                          whileHover={{ scale: 1.03 }}
+                          whileTap={{ scale: 0.97 }}
+                        >
+                          <span>Submit Proposal</span>
+                          <FiSend className="button-icon" />
+                        </motion.button>
+                      </form>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>

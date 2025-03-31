@@ -138,53 +138,143 @@
   background-color: #004a66;
 }
 
-/* Concept Form Styling */
+/* Concept Form Styling - Fix Unwanted Boxes and Spacing Issues */
 .concept-proposal-section {
   margin-top: 60px;
   padding: 40px 0;
-  background-color: #f9f9f9;
-  border-radius: 10px;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .concept-form-wrapper {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 93, 127, 0.15);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  transform: translateY(0);
+  background-color: white;
 }
 
-.concept-form-title-container {
-  text-align: left;
-  margin-bottom: 30px;
-}
-
-.concept-form-main-title {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #005d7f;
+/* Toggle Button Styles */
+.form-toggle-button {
+    display: flex;
+    align-items: center;
+  justify-content: center;
+    width: 100%;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, #005d7f, #007ea8);
+  color: white;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+    margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 93, 127, 0.15);
+  transition: all 0.3s ease;
   position: relative;
+  overflow: hidden;
+  z-index: 5;
 }
 
-.concept-form-subtitle {
-  font-size: 1.1rem;
-  color: #555;
-  max-width: 80%;
-  line-height: 1.6;
-  text-align: justify;
+.form-toggle-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+    width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.7s ease;
 }
 
+.form-toggle-button:hover {
+  background: linear-gradient(135deg, #00506e, #0071a3);
+}
+
+.form-toggle-button:hover::before {
+  left: 100%;
+}
+
+.toggle-icon {
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+/* Fix animation and content overflow issues */
 .form-container {
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden !important;
+  will-change: height, opacity;
+  box-shadow: 0 10px 30px -5px rgba(0, 93, 127, 0.12);
 }
 
 .concept-proposal-form {
   padding: 30px;
   position: relative;
+  background-color: white;
+  will-change: transform;
+  transition: transform 0.3s ease;
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
+/* Fix the glitching close animation */
+.form-container.closing {
+  overflow: hidden;
+}
+
+/* Fix animations to be consistent */
+.abstract-art-container {
+  position: relative;
+  height: 250px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 8px 8px 0 0;
+  background: linear-gradient(135deg, #f0f7fa, #e8f4f8);
+  box-shadow: none;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: scale(1);
+  z-index: 10;
+}
+
+.abstract-art-container:hover {
+  box-shadow: none;
+  transform: translateY(0) scale(1.01);
+}
+
+.concept-form-wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 93, 127, 0.2);
+}
+
+/* Align animation durations for connected feeling */
+.abstract-shape {
+  transition: all 0.4s ease;
+}
+
+.abstract-line {
+  transition: all 0.4s ease;
+}
+
+.abstract-circle {
+  transition: all 0.4s ease;
+}
+
+.art-title-container {
+  transition: all 0.4s ease;
+}
+
+/* Fix spacing in the form */
 .form-flex-row {
   display: flex;
   flex-direction: column;
@@ -192,75 +282,28 @@
   margin-bottom: 20px;
 }
 
-@media (min-width: 768px) {
-  .form-flex-row {
-    flex-direction: row;
-  }
-  
-  .form-flex-row .form-group {
-    flex: 1;
-  }
+.form-group {
+  margin-bottom: 20px;
 }
 
-.form-input {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 15px;
-  color: #333;
-  transition: border-color 0.3s, box-shadow 0.3s;
+.form-group:last-child {
+  margin-bottom: 0;
 }
 
-.form-input:focus {
-  border-color: #005d7f;
-  box-shadow: 0 0 0 2px rgba(0, 93, 127, 0.2);
-  outline: none;
+.form-flex-row .form-group {
+  margin-bottom: 0;
 }
 
-.form-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
+/* Fix submit button spacing */
 .submit-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 28px;
-  background-color: #005d7f;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 20px;
-  box-shadow: 0 2px 10px rgba(0, 93, 127, 0.2);
+  margin-top: 25px;
+  transform: translateY(0);
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #004a66;
-}
-
-.button-icon {
-  margin-left: 10px;
-}
-
-@media (max-width: 768px) {
-  .concept-form-main-title {
-    font-size: 1.8rem;
-  }
-  
-  .concept-form-subtitle {
-    max-width: 100%;
-    font-size: 1rem;
-  }
-  
-  .concept-proposal-form {
-    padding: 20px;
-  }
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 93, 127, 0.3);
 }
 
 /* Topics Grid Layout */
@@ -428,12 +471,15 @@
 .form-note {
   text-align: justify;
   margin: 25px 0;
-  font-size: 14px;
-  color: #666;
+  font-size: 15px;
+  color: #444;
   background: #f8f8f8;
-  padding: 15px;
+  padding: 16px;
   border-left: 4px solid #005d7f;
   border-radius: 0 4px 4px 0;
+  position: relative;
+  transition: transform 0.3s ease;
+  line-height: 1.6;
 }
 
 /* Form Label and Icon Styling */
@@ -443,6 +489,8 @@
   font-weight: 600;
   color: #333;
   margin-bottom: 10px;
+  font-size: 16px;
+  letter-spacing: 0.2px;
 }
 
 .form-icon {
@@ -452,10 +500,38 @@
 }
 
 /* Additional Form Styling */
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  background-color: #fcfcfc;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+  line-height: 1.5;
+}
+
+.form-input:focus {
+  border-color: #005d7f;
+  box-shadow: 0 0 0 2px rgba(0, 93, 127, 0.2);
+  outline: none;
+  transform: translateY(-1px);
+  background-color: white;
+}
+
 .form-input::placeholder {
-  color: #aaa;
+  color: #999;
   font-style: italic;
-  font-size: 14px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
 }
 
 .note-highlight {
@@ -502,20 +578,9 @@
 }
 
 /* Abstract Art Container */
-.abstract-art-container {
-  position: relative;
-  height: 180px;
-  margin-bottom: 30px;
-  overflow: hidden;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #f0f7fa, #e8f4f8);
-  box-shadow: 0 8px 30px rgba(0, 93, 127, 0.1);
-  transition: all 0.5s ease;
-}
-
 .abstract-art-container:hover {
-  box-shadow: 0 10px 40px rgba(0, 93, 127, 0.2);
-  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 93, 127, 0.3);
+  transform: translateY(-5px) scale(1.01);
 }
 
 .abstract-shape {
@@ -671,55 +736,451 @@
   }
 }
 
-/* Toggle Button for Form */
-.form-toggle-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 16px 24px;
-  background: linear-gradient(135deg, #005d7f, #007ea8);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 12px rgba(0, 93, 127, 0.2);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+/* Add connecting elements between abstract art and form */
+.abstract-shape::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(0, 93, 127, 0.3), rgba(0, 93, 127, 0));
+  bottom: -40px;
+  left: 50%;
+  z-index: 10;
 }
 
-.form-toggle-button::before {
+/* Add thematic elements that span across components */
+.concept-form-title-container::before {
   content: '';
   position: absolute;
   top: 0;
-  left: -100%;
+  left: 0;
   width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.7s ease;
+  height: 4px;
+  background: linear-gradient(90deg, rgba(0, 93, 127, 0.8), rgba(0, 168, 232, 0.4));
+  opacity: 0.8;
 }
 
-.form-toggle-button:hover {
-  background: linear-gradient(135deg, #00506e, #0071a3);
-  box-shadow: 0 6px 15px rgba(0, 93, 127, 0.3);
+/* Connector elements between abstract art and form */
+.connector-line {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(0, 93, 127, 0.4), rgba(0, 93, 127, 0.1));
+  z-index: 5;
 }
 
-.form-toggle-button:hover::before {
-  left: 100%;
+.connector-line-center {
+  width: 2px;
+  height: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.toggle-icon {
-  margin-left: 10px;
-  font-size: 20px;
+.connector-dot {
+  position: absolute;
+  background: rgba(0, 93, 127, 0.4);
+  border-radius: 50%;
+  z-index: 5;
+  opacity: 0.7;
 }
 
-/* Animation for collapsible form */
-.form-container {
+.connector-dot-1 {
+  width: 8px;
+  height: 8px;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulseScaleAnimation 4s infinite ease-in-out;
+}
+
+.connector-dot-2, .connector-dot-3 {
+  display: none;
+}
+
+/* Improve form toggle button to better connect with abstract art */
+.form-toggle-button {
   position: relative;
-  transform-origin: top;
-  margin-bottom: 40px;
+  z-index: 10;
+}
+
+/* Make the concept form title container connect better with abstract art */
+.concept-form-title-container {
+  position: relative;
+  z-index: 8;
+}
+
+/* Ensure the abstract art container stays above other elements */
+.abstract-art-container {
+  position: relative;
+  z-index: 10;
+}
+
+/* Add stronger connection with hover effects */
+.abstract-art-container:hover + .concept-form-title-container::before {
+  opacity: 1;
+  background: linear-gradient(90deg, rgba(0, 93, 127, 1), rgba(0, 168, 232, 0.6));
+}
+
+/* Title inside abstract art */
+.art-title-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 30px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5), transparent);
+  z-index: 20;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+}
+
+.abstract-art-container:hover .art-title-container {
+  padding-bottom: 30px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6), transparent);
+}
+
+.abstract-art-container .concept-form-main-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #005d7f;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s ease;
+}
+
+.abstract-art-container:hover .concept-form-main-title {
+  transform: translateY(-3px);
+}
+
+.abstract-art-container .concept-form-subtitle {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 90%;
+  line-height: 1.6;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: opacity 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .abstract-art-container {
+    height: 280px;
+  }
+  
+  .art-title-container {
+    padding: 20px;
+  }
+  
+  .abstract-art-container .concept-form-main-title {
+    font-size: 1.8rem;
+  }
+  
+  .abstract-art-container .concept-form-subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+}
+
+/* Additional decorative elements for abstract art */
+.abstract-accent {
+  position: absolute;
+  background: linear-gradient(135deg, rgba(0, 93, 127, 0.2), rgba(0, 168, 232, 0.1));
+  opacity: 0.6;
+  border-radius: 50%;
+  transform: rotate(-35deg) skew(20deg);
+  z-index: 2;
+}
+
+.abstract-accent-1 {
+  width: 180px;
+  height: 35px;
+  top: 40px;
+  right: -40px;
+  animation: floatAnimation 12s infinite ease-in-out reverse;
+}
+
+.abstract-accent-2 {
+  width: 150px;
+  height: 25px;
+  top: 90px;
+  left: -30px;
+  animation: floatAnimation 15s infinite ease-in-out;
+  opacity: 0.4;
+}
+
+.abstract-dot-grid {
+  position: absolute;
+  top: 20px;
+  right: 20%;
+  width: 120px;
+  height: 120px;
+  z-index: 1;
+  opacity: 0.4;
+  background-image: 
+    radial-gradient(circle, rgba(0, 93, 127, 0.2) 1px, transparent 1px),
+    radial-gradient(circle, rgba(0, 93, 127, 0.2) 1px, transparent 1px);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  animation: pulseAnimation 8s infinite ease-in-out;
+  transform: rotate(10deg);
+}
+
+.abstract-art-container:hover .abstract-dot-grid {
+  opacity: 0.6;
+}
+
+/* Enhance the art-title-container to better integrate with the abstract art */
+.art-title-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 25px 30px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.5), transparent);
+  z-index: 20;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: all 0.3s ease;
+}
+
+.abstract-art-container:hover .art-title-container {
+  padding-bottom: 30px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6), transparent);
+}
+
+.abstract-art-container .concept-form-main-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #005d7f;
+  position: relative;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s ease;
+}
+
+.abstract-art-container:hover .concept-form-main-title {
+  transform: translateY(-3px);
+}
+
+.abstract-art-container .concept-form-subtitle {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 90%;
+  line-height: 1.6;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: opacity 0.3s ease;
+}
+
+/* Input styling */
+.form-input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #333;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: #005d7f;
+  box-shadow: 0 0 0 2px rgba(0, 93, 127, 0.2);
+  outline: none;
+  transform: translateY(-1px);
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Title styling */
+.concept-form-title-container {
+  display: none;
+}
+
+/* Submit button */
+.submit-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  background-color: #005d7f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 25px;
+  box-shadow: 0 2px 10px rgba(0, 93, 127, 0.2);
+}
+
+.submit-button:hover {
+  background-color: #004a66;
+}
+
+.button-icon {
+  margin-left: 10px;
+}
+
+/* Responsive form styles */
+@media (min-width: 768px) {
+  .form-flex-row {
+    flex-direction: row;
+  }
+  
+  .form-flex-row .form-group {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .concept-form-wrapper {
+    padding: 0;
+  }
+  
+  .concept-proposal-form {
+    padding: 20px;
+  }
+  
+  .form-toggle-button {
+    padding: 15px 20px;
+  }
+}
+
+/* Research Intro Section - consistent design */
+.research-intro {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  margin-bottom: 50px;
+  position: relative;
+  padding: 0;
+}
+
+/* Enhanced mobile and tablet responsiveness */
+@media (max-width: 1024px) {
+  .concept-form-wrapper {
+    max-width: 90%;
+  }
+  
+  .abstract-art-container {
+    height: 220px;
+  }
+  
+  .abstract-art-container .concept-form-main-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .concept-form-wrapper {
+    max-width: 95%;
+  }
+  
+  .concept-proposal-form {
+    padding: 20px;
+  }
+  
+  .form-flex-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-input {
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+  
+  .abstract-art-container {
+    height: 250px;
+  }
+  
+  .art-title-container {
+    padding: 20px;
+  }
+  
+  .abstract-art-container .concept-form-main-title {
+    font-size: 1.8rem;
+    line-height: 1.3;
+  }
+  
+  .abstract-art-container .concept-form-subtitle {
+    font-size: 1rem;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+  
+  .form-toggle-button {
+    padding: 16px 18px;
+    font-size: 15px;
+  }
+  
+  .form-flex-row .form-group {
+    width: 100%;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .concept-form-wrapper {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .abstract-art-container {
+    height: 220px;
+    border-radius: 0;
+  }
+  
+  .form-toggle-button {
+    border-radius: 0;
+  }
+  
+  .form-container {
+    border-radius: 0;
+  }
+  
+  .concept-proposal-form {
+    padding: 16px;
+  }
+  
+  .abstract-accent-1, 
+  .abstract-accent-2 {
+    opacity: 0.4;
+  }
+  
+  .abstract-art-container .concept-form-main-title {
+    font-size: 1.6rem;
+  }
+  
+  .form-note {
+    padding: 12px;
+    font-size: 14px;
+  }
+  
+  .submit-button {
+    margin-top: 20px;
+    padding: 12px 16px;
+  }
+}
+
+/* Improve accessibility */
+.form-input:focus, 
+.form-textarea:focus {
+  border-color: #005d7f;
+  box-shadow: 0 0 0 3px rgba(0, 93, 127, 0.25);
+  outline: none;
 } 
