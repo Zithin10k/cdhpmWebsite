@@ -3,13 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Hero from '../components/Hero';
 import '../styles/Research.css';
 // Import icons
-import { FiSend, FiUserPlus, FiMail, FiUsers, FiFileText, FiClipboard, FiDatabase, FiTarget, FiArrowRight } from 'react-icons/fi';
+import { FiSend, FiUserPlus, FiMail, FiUsers, FiFileText, FiClipboard, FiDatabase, FiTarget, FiArrowRight, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { HiOutlineHeart, HiOutlineLightningBolt, HiOutlineUserGroup } from 'react-icons/hi';
 
 const Research = () => {
   const [selectedTopic, setSelectedTopic] = useState(0);
   const [activeInView, setActiveInView] = useState(0);
   const topicsContainerRef = useRef(null);
+  const [isFormExpanded, setIsFormExpanded] = useState(false);
   const [formData, setFormData] = useState({
     principalInvestigators: '',
     principalInvestigatorsEmail: '',
@@ -184,15 +185,14 @@ const Research = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <div className="section-header" style={{ textAlign: 'left' }}>
+            <div className="section-header">
               <h2 className="section-title">Our Research Focus</h2>
-
             </div>
             
             <div className="research-intro">
               <div className="intro-content">
-                <p style={{ textAlign: 'justify' }}>The Centre for Digital Health and Precision Medicine aims to leverage the extensive longitudinal patient database of the Apollo Hospitals Group, and datasets of the University of Leicester and other Consortium Partners to deliver improved population health with a global perspective through better disease prediction and prevention.</p>
-                <p style={{ textAlign: 'justify' }}>Our work is dedicated to making a tangible difference in patient lives and healthcare systems worldwide, leading to improved and earlier detection, diagnosis and management of multiple acute and long-term conditions in hospital and community settings.</p>
+                <p>The Centre for Digital Health and Precision Medicine aims to leverage the extensive longitudinal patient database of the Apollo Hospitals Group, and datasets of the University of Leicester and other Consortium Partners to deliver improved population health with a global perspective through better disease prediction and prevention.</p>
+                <p>Our work is dedicated to making a tangible difference in patient lives and healthcare systems worldwide, leading to improved and earlier detection, diagnosis and management of multiple acute and long-term conditions in hospital and community settings.</p>
               </div>
               <div className="intro-decoration">
                 <div className="decoration-circle"></div>
@@ -200,109 +200,52 @@ const Research = () => {
               </div>
             </div>
             
-
+            {/* Topics Showcase - Grid layout for better organization */}
             <div className="topics-showcase">
-              {topics.map((topic, index) => (
-                <motion.div 
-                  key={index}
-                  id={`topic-${index}`}
-                  className="topic-content"
-                  data-index={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.1 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  style={{ 
-                    backgroundColor: "#f9f9f9", 
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.1)", 
-                    border: "1px solid #eaeaea",
-                    borderRadius: "4px",
-                    overflow: "hidden",
-                    margin: "0 0 30px 0"
-                  }}
-                >
-                  <div className="topic-inline-content" style={{ display: "flex", flexDirection: "column" }}>
-                    <div className="topic-image-container" style={{ position: "relative", width: "100%" }}>
-                      <div className="topic-number" style={{ 
-                        position: "absolute", 
-                        top: "10px", 
-                        left: "10px", 
-                        background: "rgba(0,0,0,0.7)", 
-                        color: "white", 
-                        padding: "3px 10px", 
-                        fontSize: "12px", 
-                        letterSpacing: "1px",
-                        borderRadius: "2px",
-                        fontFamily: "monospace",
-                        zIndex: 2 
-                      }}>{(index + 1).toString().padStart(2, '0')}</div>
-                      <img 
-                        src={topic.image} 
-                        alt={topic.title}
-                        className="topic-image"
-                        style={{ width: "100%", height: "200px", objectFit: "cover" }}
-                      />
-                      <div className="topic-image-overlay" style={{ 
-                        position: "absolute", 
-                        bottom: 0, 
-                        left: 0, 
-                        right: 0, 
-                        background: "linear-gradient(to top, rgba(0,0,0,0.8), transparent)", 
-                        height: "50%" 
-                      }}></div>
-                    </div>
-                    <div className="topic-text-content" style={{ 
-                      textAlign: 'left', 
-                      padding: "20px", 
-                      background: "white" 
-                    }}>
-                      <div className="topic-header" style={{ borderBottom: "2px solid #f0f0f0", paddingBottom: "15px", marginBottom: "15px" }}>
-                        <h3 className="topic-title" style={{ 
-                          fontSize: "1.5rem", 
-                          fontWeight: "700", 
-                          margin: "0",
-                          letterSpacing: "0.5px",
-                          color: "#333"
-                        }}>{topic.title}</h3>
-                        <div style={{ 
-                          fontSize: "12px", 
-                          color: "#888", 
-                          marginTop: "8px", 
-                          textTransform: "uppercase", 
-                          letterSpacing: "1px" 
-                        }}>Research Focus Area</div>
+              <div className="topics-grid">
+                {topics.map((topic, index) => (
+                  <motion.div 
+                    key={index}
+                    id={`topic-${index}`}
+                    className="topic-content"
+                    data-index={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: index * 0.1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                  >
+                    <div className="topic-card">
+                      <div className="topic-image-container">
+                        <div className="topic-number">{(index + 1).toString().padStart(2, '0')}</div>
+                        <img 
+                          src={topic.image} 
+                          alt={topic.title}
+                          className="topic-image"
+                        />
+                        <div className="topic-image-overlay"></div>
                       </div>
-                      <p className="topic-description" style={{ 
-                        textAlign: 'justify', 
-                        lineHeight: "1.6", 
-                        fontSize: "15px", 
-                        color: "#444",
-                        margin: "0 0 20px 0"
-                      }}>{topic.description}</p>
-                      <motion.button 
-                        className="topic-learn-more"
-                        whileHover={{ scale: 1.03, x: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                        style={{
-                          background: "none",
-                          border: "none",
-                          color: "#0066cc",
-                          display: "flex",
-                          alignItems: "center",
-                          padding: "0",
-                          cursor: "pointer",
-                          fontSize: "14px",
-                          fontWeight: "600",
-                          letterSpacing: "0.5px"
-                        }}
-                      >
-                        <span>READ MORE</span>
-                        <FiArrowRight className="arrow-icon" style={{ marginLeft: "8px" }} />
-                      </motion.button>
+                      <div className="topic-text-content">
+                        <div className="topic-header">
+                          <div className="topic-icon-container">
+                            {topic.icon}
+                          </div>
+                          <h3 className="topic-title">{topic.title}</h3>
+                          <div className="topic-category">Research Focus Area</div>
+                        </div>
+                        <p className="topic-description">{topic.description}</p>
+                        <motion.button 
+                          className="topic-learn-more"
+                          whileHover={{ scale: 1.03, x: 5 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <span>READ MORE</span>
+                          <FiArrowRight className="arrow-icon" />
+                        </motion.button>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
           
@@ -314,159 +257,190 @@ const Research = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             <div className="concept-form-wrapper">
-              <div className="concept-form-container">
-                <div className="concept-form-title-container" style={{ textAlign: 'left' }}>
-                  <div className="floating-particles">
-                    <div className="particle particle-1"></div>
-                    <div className="particle particle-2"></div>
-                    <div className="particle particle-3"></div>
-                    <div className="particle particle-4"></div>
-                    <div className="particle particle-5"></div>
-                  </div>
-                  <h2 className="concept-form-main-title">Concept Proposal Form</h2>
-                  <p className="concept-form-subtitle" style={{ textAlign: 'justify' }}>Submit your research concept proposal for consideration by our team.</p>
-                </div>
-                
-                <div className="form-container">
-                  <form className="concept-proposal-form" onSubmit={handleSubmit}>
-                    <div className="form-pattern-background"></div>                    
-                    <div className="form-flex-row">
-                      <div className="form-group" style={{ textAlign: 'left' }}>
-                        <label htmlFor="principalInvestigators">
-                          <FiUserPlus className="form-icon" />
-                          <span>Principal Investigator(s)</span>
+              {/* Abstract Art Container */}
+              <div className="abstract-art-container">
+                <div className="abstract-shape abstract-shape-1"></div>
+                <div className="abstract-shape abstract-shape-2"></div>
+                <div className="abstract-shape abstract-shape-3"></div>
+                <div className="abstract-shape abstract-shape-4"></div>
+                <div className="abstract-line abstract-line-1"></div>
+                <div className="abstract-line abstract-line-2"></div>
+                <div className="abstract-circle abstract-circle-1"></div>
+                <div className="abstract-circle abstract-circle-2"></div>
+              </div>
+              
+              <div className="concept-form-title-container">
+                <h2 className="concept-form-main-title">Concept Proposal Form</h2>
+                <p className="concept-form-subtitle">Submit your research concept proposal for consideration by our team.</p>
+              </div>
+              
+              {/* Toggle Button for Expanding/Collapsing Form */}
+              <motion.button 
+                className="form-toggle-button"
+                onClick={() => setIsFormExpanded(!isFormExpanded)}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                aria-expanded={isFormExpanded}
+              >
+                <span>{isFormExpanded ? "Hide Form" : "Open Proposal Form"}</span>
+                <motion.div
+                  initial={false}
+                  animate={{ rotate: isFormExpanded ? 180 : 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FiChevronDown className="toggle-icon" />
+                </motion.div>
+              </motion.button>
+              
+              {/* Collapsible Form */}
+              <AnimatePresence>
+                {isFormExpanded && (
+                  <motion.div 
+                    className="form-container"
+                    initial={{ opacity: 0, height: 0, overflow: "hidden" }}
+                    animate={{ opacity: 1, height: "auto", overflow: "visible" }}
+                    exit={{ opacity: 0, height: 0, overflow: "hidden" }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                  >
+                    <form className="concept-proposal-form" onSubmit={handleSubmit}>                  
+                      <div className="form-flex-row">
+                        <div className="form-group">
+                          <label htmlFor="principalInvestigators">
+                            <FiUserPlus className="form-icon" />
+                            <span>Principal Investigator(s)</span>
+                          </label>
+                          <input
+                            type="text"
+                            id="principalInvestigators"
+                            name="principalInvestigators"
+                            value={formData.principalInvestigators}
+                            onChange={handleChange}
+                            placeholder="E.g: Dr. Nilesh Samani; Dr. Sujoy Kar"
+                            required
+                            className="form-input"
+                          />
+                        </div>
+                        
+                        <div className="form-group">
+                          <label htmlFor="principalInvestigatorsEmail">
+                            <FiMail className="form-icon" />
+                            <span>Email ID</span>
+                          </label>
+                          <input
+                            type="email"
+                            id="principalInvestigatorsEmail"
+                            name="principalInvestigatorsEmail"
+                            value={formData.principalInvestigatorsEmail}
+                            onChange={handleChange}
+                            placeholder="principal_investigator@example.com"
+                            required
+                            className="form-input"
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="form-group">
+                        <label htmlFor="teamMembers">
+                          <FiUsers className="form-icon" />
+                          <span>Team Members, Stakeholders & Collaborators</span>
                         </label>
                         <input
                           type="text"
-                          id="principalInvestigators"
-                          name="principalInvestigators"
-                          value={formData.principalInvestigators}
+                          id="teamMembers"
+                          name="teamMembers"
+                          value={formData.teamMembers}
                           onChange={handleChange}
-                          placeholder="E.g: Dr. Nilesh Samani; Dr. Sujoy Kar"
+                          placeholder="List all team members involved in the project"
                           required
                           className="form-input"
                         />
                       </div>
                       
-                      <div className="form-group" style={{ textAlign: 'left' }}>
-                        <label htmlFor="principalInvestigatorsEmail">
-                          <FiMail className="form-icon" />
-                          <span>Email ID</span>
+                      <div className="form-group">
+                        <label htmlFor="projectTitle">
+                          <FiFileText className="form-icon" />
+                          <span>Project Title</span>
                         </label>
                         <input
-                          type="email"
-                          id="principalInvestigatorsEmail"
-                          name="principalInvestigatorsEmail"
-                          value={formData.principalInvestigatorsEmail}
+                          type="text"
+                          id="projectTitle"
+                          name="projectTitle"
+                          value={formData.projectTitle}
                           onChange={handleChange}
-                          placeholder="principal_investigator@example.com"
+                          placeholder="E.g: Development of Machine Learning Model for Glioblastoma Prediction"
                           required
                           className="form-input"
                         />
                       </div>
-                    </div>
-                    
-                    <div className="form-group" style={{ textAlign: 'left' }}>
-                      <label htmlFor="teamMembers">
-                        <FiUsers className="form-icon" />
-                        <span>Team Members, Stakeholders & Collaborators</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="teamMembers"
-                        name="teamMembers"
-                        value={formData.teamMembers}
-                        onChange={handleChange}
-                        placeholder="List all team members involved in the project"
-                        required
-                        className="form-input"
-                      />
-                    </div>
-                    
-                    <div className="form-group" style={{ textAlign: 'left' }}>
-                      <label htmlFor="projectTitle">
-                        <FiFileText className="form-icon" />
-                        <span>Project Title</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="projectTitle"
-                        name="projectTitle"
-                        value={formData.projectTitle}
-                        onChange={handleChange}
-                        placeholder="E.g: Development of Machine Learning Model for Glioblastoma Prediction"
-                        required
-                        className="form-input"
-                      />
-                    </div>
-                    
-                    <div className="form-group" style={{ textAlign: 'left' }}>
-                      <label htmlFor="projectDescription">
-                        <FiClipboard className="form-icon" />
-                        <span>Project Description (500 words)</span>
-                      </label>
-                      <textarea
-                        id="projectDescription"
-                        name="projectDescription"
-                        rows="6"
-                        value={formData.projectDescription}
-                        onChange={handleChange}
-                        placeholder="Describe the project with its key concepts, focusing on uniqueness, novelty and demand for the proposed project."
-                        required
-                        className="form-input form-textarea"
-                      ></textarea>
-                    </div>
-                    
-                    <div className="form-flex-row">
-                      <div className="form-group" style={{ textAlign: 'left' }}>
-                        <label htmlFor="dataRequired">
-                          <FiDatabase className="form-icon" />
-                          <span>Types of Data Required</span>
+                      
+                      <div className="form-group">
+                        <label htmlFor="projectDescription">
+                          <FiClipboard className="form-icon" />
+                          <span>Project Description (500 words)</span>
                         </label>
                         <textarea
-                          id="dataRequired"
-                          name="dataRequired"
-                          rows="3"
-                          value={formData.dataRequired}
+                          id="projectDescription"
+                          name="projectDescription"
+                          rows="6"
+                          value={formData.projectDescription}
                           onChange={handleChange}
-                          placeholder="E.g: Skull X-Rays of Glioblastoma; MRI of Glioblastoma"
+                          placeholder="Describe the project with its key concepts, focusing on uniqueness, novelty and demand for the proposed project."
                           required
                           className="form-input form-textarea"
                         ></textarea>
                       </div>
                       
-                      <div className="form-group" style={{ textAlign: 'left' }}>
-                        <label htmlFor="anticipatedOutcome">
-                          <FiTarget className="form-icon" />
-                          <span>Anticipated Outcome</span>
-                        </label>
-                        <textarea
-                          id="anticipatedOutcome"
-                          name="anticipatedOutcome"
-                          rows="3"
-                          value={formData.anticipatedOutcome}
-                          onChange={handleChange}
-                          placeholder="E.g: ML Model for Glioblastoma Prediction"
-                          required
-                          className="form-input form-textarea"
-                        ></textarea>
+                      <div className="form-flex-row">
+                        <div className="form-group">
+                          <label htmlFor="dataRequired">
+                            <FiDatabase className="form-icon" />
+                            <span>Types of Data Required</span>
+                          </label>
+                          <textarea
+                            id="dataRequired"
+                            name="dataRequired"
+                            rows="3"
+                            value={formData.dataRequired}
+                            onChange={handleChange}
+                            placeholder="E.g: Skull X-Rays of Glioblastoma; MRI of Glioblastoma"
+                            required
+                            className="form-input form-textarea"
+                          ></textarea>
+                        </div>
+                        
+                        <div className="form-group">
+                          <label htmlFor="anticipatedOutcome">
+                            <FiTarget className="form-icon" />
+                            <span>Anticipated Outcome</span>
+                          </label>
+                          <textarea
+                            id="anticipatedOutcome"
+                            name="anticipatedOutcome"
+                            rows="3"
+                            value={formData.anticipatedOutcome}
+                            onChange={handleChange}
+                            placeholder="E.g: ML Model for Glioblastoma Prediction"
+                            required
+                            className="form-input form-textarea"
+                          ></textarea>
+                        </div>
                       </div>
-                    </div>
-                    
-                    <p className="form-note" style={{ textAlign: 'justify' }}><span className="note-highlight">Note:</span> Following this submission, the CDHPM Executive will review your proposal and contact you about next steps.</p>
-                    
-                    <motion.button 
-                      type="submit" 
-                      className="submit-button"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      <span>Submit Proposal</span>
-                      <FiSend className="button-icon" />
-                    </motion.button>
-                  </form>
-                </div>
-              </div>
+                      
+                      <p className="form-note"><span className="note-highlight">Note:</span> Following this submission, the CDHPM Executive will review your proposal and contact you about next steps.</p>
+                      
+                      <motion.button 
+                        type="submit" 
+                        className="submit-button"
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                      >
+                        <span>Submit Proposal</span>
+                        <FiSend className="button-icon" />
+                      </motion.button>
+                    </form>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </motion.div>
         </div>
