@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
+import RelatedPagesCTA from '../components/RelatedPagesCTA';
 
 const OrganizationModal = ({ isOpen, onClose, name, description, logo, website, buildingImage }) => {
   // Lock body scroll when modal is open
@@ -404,6 +405,19 @@ const OrganizationLogos = () => {
 };
 
 const About = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
+  const isMobile = windowWidth <= 768;
+  
   return (
     <motion.div
       className="page page-with-hero"
@@ -430,6 +444,335 @@ is a partnership between three globally renowned institutions."
         <OrganizationLogos />
       </section>
 
+      {/* Our Mission Section */}
+      <section style={{ 
+        padding: '60px 20px', 
+        maxWidth: '1200px', 
+        margin: '0 auto',
+        background: 'white'
+      }}>
+        <div style={{
+          maxWidth: '900px',
+          margin: '0 auto',
+          textAlign: 'center'
+        }}>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            style={{
+              fontSize: isMobile ? 'var(--font-size-xl)' : 'var(--font-size-2xl)',
+              color: 'black',
+              fontWeight: 'bold',
+              marginBottom: '30px',
+              fontFamily: 'var(--font-secondary)',
+              position: 'relative',
+              paddingBottom: '15px'
+            }}
+          >
+            Our Mission
+            <span style={{
+              display: 'block',
+              width: '80px',
+              height: '3px',
+              background: 'red',
+              position: 'absolute',
+              bottom: 0,
+              left: '50%',
+              transform: 'translateX(-50%)'
+            }}></span>
+          </motion.h2>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            style={{
+              textAlign: 'justify',
+              lineHeight: '1.8',
+              fontSize: isMobile ? 'var(--font-size-base)' : 'var(--font-size-lg)',
+              color: 'var(--color-gray-700)'
+            }}
+          >
+            <p>
+              Our goal is to establish an internationally recognized research centre that transforms healthcare and its delivery by developing and implementing digital health and precision medicine solutions powered by advanced analytics.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section style={{
+        padding: '70px 20px',
+        background: 'var(--color-gray-100)',
+        position: 'relative',
+        overflow: 'hidden'
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          maxWidth: '1000px',
+          margin: '0 auto',
+          gap: isMobile ? '60px' : '120px'
+        }}>
+          {/* First Stat */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            style={{
+              textAlign: 'center'
+            }}
+          >
+            <div style={{
+              fontSize: isMobile ? '70px' : '90px',
+              fontWeight: 'bold',
+              color: 'var(--color-primary)',
+              fontFamily: 'var(--font-secondary)',
+              lineHeight: '1',
+              marginBottom: '15px'
+            }}>
+              <motion.span
+                initial={{ scale: 0.8 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.6,
+                  type: 'spring',
+                  bounce: 0.4
+                }}
+              >
+                45+
+              </motion.span>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{
+                fontSize: isMobile ? '32px' : '38px',
+                fontWeight: 'bold',
+                color: 'var(--color-gray-800)',
+                marginBottom: '10px'
+              }}
+            >
+              Million
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              style={{
+                fontSize: isMobile ? 'var(--font-size-lg)' : '28px',
+                color: 'var(--color-gray-600)'
+              }}
+            >
+              Patients Across<br />the Globe
+            </motion.div>
+          </motion.div>
+
+          {/* Second Stat */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            style={{
+              textAlign: 'center'
+            }}
+          >
+            <div style={{
+              fontSize: isMobile ? '70px' : '90px',
+              fontWeight: 'bold',
+              color: 'var(--color-primary)',
+              fontFamily: 'var(--font-secondary)',
+              lineHeight: '1',
+              marginBottom: '15px'
+            }}>
+              <motion.span
+                initial={{ scale: 0.8 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.6,
+                  type: 'spring',
+                  bounce: 0.4
+                }}
+              >
+                15+
+              </motion.span>
+            </div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              style={{
+                fontSize: isMobile ? '32px' : '38px',
+                fontWeight: 'bold',
+                color: 'var(--color-gray-800)',
+                marginBottom: '10px'
+              }}
+            >
+              Years
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              style={{
+                fontSize: isMobile ? 'var(--font-size-lg)' : '28px',
+                color: 'var(--color-gray-600)'
+              }}
+            >
+              of Longitudinal<br />Records
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Research Hubs Section */}
+      <section style={{
+        padding: '70px 20px',
+        maxWidth: '1200px',
+        margin: '0 auto',
+        background: 'white'
+      }}>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{
+            display: 'none'
+          }}
+        >
+          Our Research Hubs
+        </motion.h2>
+
+        <div style={{
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          gap: '30px',
+          justifyContent: 'center',
+          alignItems: 'stretch'
+        }}>
+          {/* UK Research Hub */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            style={{
+              flex: 1,
+              border: '1px solid var(--color-gray-200)',
+              boxShadow: '0 5px 15px rgba(0, 0, 0, 0.05)',
+              borderRadius: '2px',
+              overflow: 'hidden'
+            }}
+          >
+            <div style={{
+              height: '250px',
+              overflow: 'hidden',
+              position: 'relative'
+            }}>
+              <img 
+                src="/assets/images/uniOfLBuilding.webp" 
+                alt="University of Leicester hub" 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.5s ease'
+                }}
+                onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+              />
+            </div>
+            <div style={{
+              padding: '25px'
+            }}>
+              <h3 style={{
+                fontSize: 'var(--font-size-lg)',
+                marginBottom: '10px',
+                color: 'var(--color-gray-800)'
+              }}>
+                University of Leicester Hub, UK
+              </h3>
+              <p style={{
+                fontSize: 'var(--font-size-base)',
+                color: 'var(--color-gray-600)',
+                lineHeight: '1.6'
+              }}>
+                Based at the British Heart Foundation Cardiovascular Research Centre, our UK hub brings together expertise in data science, genomics, and clinical research.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* India Research Hub */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            style={{
+              flex: 1,
+              border: '1px solid var(--color-gray-200)',
+              boxShadow: '0 5px 15px rgba(0, 0, 0, 0.05)',
+              borderRadius: '2px',
+              overflow: 'hidden'
+            }}
+          >
+            <div style={{
+              height: '250px',
+              overflow: 'hidden',
+              position: 'relative'
+            }}>
+              <img 
+                src="/assets/images/apolloUniBuilding.webp" 
+                alt="Chittoor Research hub" 
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  transition: 'transform 0.5s ease'
+                }}
+                onMouseOver={(e) => e.target.style.transform = 'scale(1.05)'}
+                onMouseOut={(e) => e.target.style.transform = 'scale(1)'}
+              />
+            </div>
+            <div style={{
+              padding: '25px'
+            }}>
+              <h3 style={{
+                fontSize: 'var(--font-size-lg)',
+                marginBottom: '10px',
+                color: 'var(--color-gray-800)'
+              }}>
+                Chittoor Research Hub, India
+              </h3>
+              <p style={{
+                fontSize: 'var(--font-size-base)',
+                color: 'var(--color-gray-600)',
+                lineHeight: '1.6'
+              }}>
+                Located at The Apollo University, our India hub leverages vast clinical data and healthcare delivery expertise to drive innovation in precision medicine.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Related Pages CTA */}
+      <RelatedPagesCTA />
     </motion.div>
   );
 };
