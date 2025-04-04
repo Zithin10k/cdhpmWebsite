@@ -116,7 +116,7 @@ const Home = () => {
       }}>
         <div className="container">
           <h2 style={responsiveStyles.sectionTitle}>
-            Our Mission
+          CDHPM Launch
           </h2>
           <div style={responsiveStyles.divider}></div>
           

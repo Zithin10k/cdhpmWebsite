@@ -29,11 +29,10 @@ const NavBar = () => {
   };
 
   const navItems = [
-    { name: 'Home', path: '/' }, 
+    { name: 'About Us', path: '/about' },
+    { name: 'Our People', path: '/our-people' },
     { name: 'Research', path: '/research' },
     { name: 'Partnership', path: '/partnership' },
-    { name: 'Our People', path: '/our-people' },
-    { name: 'About Us', path: '/about' },
     { name: 'Work with Us', path: '/work-with-us' },
     { name: 'Contact Us', path: '/contact-us' },
   ];
