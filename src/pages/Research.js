@@ -11,6 +11,10 @@ const Research = () => {
   const [activeInView, setActiveInView] = useState(0);
   const topicsContainerRef = useRef(null);
   const [isFormExpanded, setIsFormExpanded] = useState(false);
+  const [facultyMembers, setFacultyMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [showFacultySelection, setShowFacultySelection] = useState(false);
+  
   const [formData, setFormData] = useState({
     principalInvestigators: '',
     principalInvestigatorsEmail: '',
@@ -18,29 +22,100 @@ const Research = () => {
     projectTitle: '',
     projectDescription: '',
     dataRequired: '',
-    anticipatedOutcome: ''
+    anticipatedOutcome: '',
+    selectedFaculty: []
   });
   
   const topics = [
     {
       title: "Cardiovascular Diseases and Care",
       image: "/assets/images/Cardiovascular.jpeg",
-      icon: <HiOutlineHeart className="research-topic-icon" />,
+      icon: <HiOutlineHeart className="research-topic-icon" size={24} style={{ color: '#000000' }} />,
       description: "Cardiovascular diseases are the leading cause of premature death and morbidity worldwide, including in India. Digital health and precision medicine offer transformative opportunities across every stage of the cardiovascular disease spectrum from prevention and early diagnosis to treatment,management, recovery and rehabilitation"
     },
     {
       title: "Acute and Emergency Medicine",
       image: "/assets/images/Acute.jpeg",
-      icon: <HiOutlineLightningBolt className="research-topic-icon" />,
+      icon: <HiOutlineLightningBolt className="research-topic-icon" size={24} style={{ color: '#000000' }} />,
       description: "Acute and Emergency Medicine is a resource – intensive area in any healthcare system, where AI and digital health can significantly enhance care by improving triaging, enabling accurate diagnoses, and initiating timely, efficient and effective treatments."
     },
     {
       title: "Multi-Morbidity",
       image: "/assets/images/multimorbidity.jpeg",
-      icon: <HiOutlineUserGroup className="research-topic-icon" />,
+      icon: <HiOutlineUserGroup className="research-topic-icon" size={24} style={{ color: '#000000' }} />,
       description: "With an ageing population, many individuals live with multi-morbid conditions, often managed in clinical silos, leading to inefficiencies and potential harm. AI-driven solutions offer a transformative opportunity to streamline care, enabling a more coordinated and holistic approach to managing complex patient needs effectively and safely."
     }
   ];
+  
+  // Fetch faculty data
+  useEffect(() => {
+    // Fetch the faculty data from people.json
+    fetch('/assets/People/people.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch faculty data');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Find the "faculty" section and map the people data to the format we need
+        const facultySection = data.sections.find(section => section.id === 'faculty');
+        if (facultySection && facultySection.people) {
+          const mappedFaculty = facultySection.people.map((person, index) => ({
+            id: index + 1,
+            name: person.name,
+            position: person.position,
+            photo: person.photo,
+            email: `example@example.com` // Using placeholder email as actual emails aren't provided in the JSON
+          }));
+          setFacultyMembers(mappedFaculty);
+        } else {
+          console.error('Faculty section not found in people.json');
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching faculty data:', error);
+        // Fallback to default faculty members in case of error
+        setFacultyMembers([
+          { id: 1, name: "Professor Sir Nilesh Samani", email: "njs@le.ac.uk" },
+          { id: 2, name: "Dr. Sujoy Kar", email: "example@example.com" },
+          { id: 3, name: "Dr. Lokesh Ravi", email: "example@example.com" },
+          { id: 4, name: "Mr. Jamie Sharp", email: "example@example.com" }
+        ]);
+        setLoading(false);
+      });
+  }, []);
+  
+  const handleFacultySelection = (id) => {
+    setFormData(prevState => {
+      const selectedFaculty = [...prevState.selectedFaculty];
+      
+      if (selectedFaculty.includes(id)) {
+        // Remove faculty if already selected
+        return {
+          ...prevState,
+          selectedFaculty: selectedFaculty.filter(faculty => faculty !== id)
+        };
+      } else {
+        // Add faculty if not selected
+        return {
+          ...prevState,
+          selectedFaculty: [...selectedFaculty, id]
+        };
+      }
+    });
+  };
+
+  const toggleFacultySelection = () => {
+    setShowFacultySelection(!showFacultySelection);
+  };
+
+  const getSelectedFacultyNames = () => {
+    return formData.selectedFaculty
+      .map(id => facultyMembers.find(faculty => faculty.id === id)?.name)
+      .filter(Boolean); // Filter out any undefined values
+  };
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -63,8 +138,10 @@ const Research = () => {
       projectTitle: '',
       projectDescription: '',
       dataRequired: '',
-      anticipatedOutcome: ''
+      anticipatedOutcome: '',
+      selectedFaculty: []
     });
+    setShowFacultySelection(false);
   };
 
   useEffect(() => {
@@ -170,7 +247,7 @@ const Research = () => {
     >
       <Hero 
         image="/assets/images/Research.webp"
-        mainText="Research Initiatives"
+        mainText="Research"
         subText="Exploring innovative approaches to digital health and precision medicine to transform healthcare"
         height="60vh"
         overlayColor="rgba(0, 0, 0, 0.5)"
@@ -186,7 +263,7 @@ const Research = () => {
             transition={{ duration: 0.7 }}
           >
             <div className="section-header">
-              <h2 className="section-title">Our Research Focus</h2>
+              <h2 className="section-title">Our Research</h2>
             </div>
             
             <div className="research-intro">
@@ -215,9 +292,7 @@ const Research = () => {
                     viewport={{ once: true, margin: "-100px" }}
                   >
                     <div className="topic-card">
-                      <div className="topic-image-container">
-                        <div className="topic-number">{(index + 1).toString().padStart(2, '0')}</div>
-                        <img 
+                      <div className="topic-image-container">                        <img 
                           src={topic.image} 
                           alt={topic.title}
                           className="topic-image"
@@ -226,11 +301,10 @@ const Research = () => {
                       </div>
                       <div className="topic-text-content">
                         <div className="topic-header">
-                          <div className="topic-icon-container">
+                          <div className="topic-icon-container" style={{ display: 'flex', alignItems: 'center', marginTop: '3px' }}>
                             {topic.icon}
                           </div>
                           <h3 className="topic-title">{topic.title}</h3>
-                          <div className="topic-category">Research Focus Area</div>
                         </div>
                         <p className="topic-description">{topic.description}</p>
                         <motion.button 
@@ -238,8 +312,6 @@ const Research = () => {
                           whileHover={{ scale: 1.03, x: 5 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <span>READ MORE</span>
-                          <FiArrowRight className="arrow-icon" />
                         </motion.button>
                       </div>
                     </div>
@@ -445,6 +517,49 @@ const Research = () => {
                               className="form-input form-textarea"
                             ></textarea>
                           </div>
+                        </div>
+                        
+                        <div className="form-group faculty-selection-container">
+                          <label className="optional-label">Faculty Members</label>
+                          
+                          {formData.selectedFaculty.length > 0 && (
+                            <div className="selected-faculty">
+                              <p className="selected-faculty-heading">Working with:</p>
+                              <ul className="selected-faculty-list">
+                                {getSelectedFacultyNames().map((name, index) => (
+                                  <li key={index}>{name}</li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+                          
+                          <button 
+                            type="button" 
+                            className="toggle-faculty-btn"
+                            onClick={toggleFacultySelection}
+                          >
+                            {showFacultySelection ? "Hide faculty list" : "Browse faculty members"}
+                          </button>
+                          
+                          {showFacultySelection && (
+                            loading ? (
+                              <p>Loading faculty members...</p>
+                            ) : (
+                              <div className="faculty-options">
+                                {facultyMembers.map(faculty => (
+                                  <div key={faculty.id} className="faculty-option">
+                                    <input
+                                      type="checkbox"
+                                      id={`faculty-${faculty.id}`}
+                                      checked={formData.selectedFaculty.includes(faculty.id)}
+                                      onChange={() => handleFacultySelection(faculty.id)}
+                                    />
+                                    <label htmlFor={`faculty-${faculty.id}`}>{faculty.name}</label>
+                                  </div>
+                                ))}
+                              </div>
+                            )
+                          )}
                         </div>
                         
                         <p className="form-note"><span className="note-highlight">Note:</span> Following this submission, the CDHPM Executive will review your proposal and contact you about next steps.</p>

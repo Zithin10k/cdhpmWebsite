@@ -4,17 +4,14 @@ import Hero from '../components/Hero';
 import '../styles/WorkWithUs.css';
 
 const WorkWithUs = () => {
-  const [facultyMembers, setFacultyMembers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [showFacultySelection, setShowFacultySelection] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
     institution: '',
     email: '',
     collaborationType: '',
-    collaborationDescription: '',
-    selectedFaculty: []
+    collaborationDescription: ''
   });
   const [formStatus, setFormStatus] = useState({
     submitted: false,
@@ -22,81 +19,12 @@ const WorkWithUs = () => {
     message: ''
   });
 
-  useEffect(() => {
-    // Fetch the faculty data from people.json
-    fetch('/assets/People/people.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch faculty data');
-        }
-        return response.json();
-      })
-      .then(data => {
-        // Find the "faculty" section and map the people data to the format we need
-        const facultySection = data.sections.find(section => section.id === 'faculty');
-        if (facultySection && facultySection.people) {
-          const mappedFaculty = facultySection.people.map((person, index) => ({
-            id: index + 1,
-            name: person.name,
-            position: person.position,
-            photo: person.photo,
-            email: `example@example.com` // Using placeholder email as actual emails aren't provided in the JSON
-          }));
-          setFacultyMembers(mappedFaculty);
-        } else {
-          console.error('Faculty section not found in people.json');
-        }
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching faculty data:', error);
-        // Fallback to default faculty members in case of error
-        setFacultyMembers([
-          { id: 1, name: "Professor Sir Nilesh Samani", email: "njs@le.ac.uk" },
-          { id: 2, name: "Dr. Sujoy Kar", email: "example@example.com" },
-          { id: 3, name: "Dr. Lokesh Ravi", email: "example@example.com" },
-          { id: 4, name: "Mr. Jamie Sharp", email: "example@example.com" }
-        ]);
-        setLoading(false);
-      });
-  }, []);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: value
     }));
-  };
-
-  const handleFacultySelection = (id) => {
-    setFormData(prevState => {
-      const selectedFaculty = [...prevState.selectedFaculty];
-      
-      if (selectedFaculty.includes(id)) {
-        // Remove faculty if already selected
-        return {
-          ...prevState,
-          selectedFaculty: selectedFaculty.filter(faculty => faculty !== id)
-        };
-      } else {
-        // Add faculty if not selected
-        return {
-          ...prevState,
-          selectedFaculty: [...selectedFaculty, id]
-        };
-      }
-    });
-  };
-
-  const toggleFacultySelection = () => {
-    setShowFacultySelection(!showFacultySelection);
-  };
-
-  const getSelectedFacultyNames = () => {
-    return formData.selectedFaculty
-      .map(id => facultyMembers.find(faculty => faculty.id === id)?.name)
-      .filter(Boolean); // Filter out any undefined values
   };
 
   const handleSubmit = (e) => {
@@ -114,10 +42,8 @@ const WorkWithUs = () => {
       institution: '',
       email: '',
       collaborationType: '',
-      collaborationDescription: '',
-      selectedFaculty: []
+      collaborationDescription: ''
     });
-    setShowFacultySelection(false);
   };
 
   // Page transition animation
@@ -241,18 +167,6 @@ const WorkWithUs = () => {
                   />
                 </div>
                 
-                <div className="form-group">
-                  <label htmlFor="collaborationType">Nature of Collaboration</label>
-                  <input
-                    type="text"
-                    id="collaborationType"
-                    name="collaborationType"
-                    value={formData.collaborationType}
-                    onChange={handleChange}
-                    placeholder="E.g., Research, Clinical Trial, Academic, Industry Partnership"
-                    required
-                  />
-                </div>
                 
                 <div className="form-group">
                   <label htmlFor="collaborationDescription">Description of Collaboration</label>
@@ -265,49 +179,6 @@ const WorkWithUs = () => {
                     placeholder="Please describe your proposed collaboration, including goals, timeline, and desired outcomes."
                     required
                   ></textarea>
-                </div>
-                
-                <div className="form-group faculty-selection-container">
-                  <label className="optional-label">Faculty Members (Optional)</label>
-                  
-                  {formData.selectedFaculty.length > 0 && (
-                    <div className="selected-faculty">
-                      <p className="selected-faculty-heading">Working with:</p>
-                      <ul className="selected-faculty-list">
-                        {getSelectedFacultyNames().map((name, index) => (
-                          <li key={index}>{name}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  
-                  <button 
-                    type="button" 
-                    className="toggle-faculty-btn"
-                    onClick={toggleFacultySelection}
-                  >
-                    {showFacultySelection ? "Hide faculty list" : "Browse faculty members"}
-                  </button>
-                  
-                  {showFacultySelection && (
-                    loading ? (
-                      <p>Loading faculty members...</p>
-                    ) : (
-                      <div className="faculty-options">
-                        {facultyMembers.map(faculty => (
-                          <div key={faculty.id} className="faculty-option">
-                            <input
-                              type="checkbox"
-                              id={`faculty-${faculty.id}`}
-                              checked={formData.selectedFaculty.includes(faculty.id)}
-                              onChange={() => handleFacultySelection(faculty.id)}
-                            />
-                            <label htmlFor={`faculty-${faculty.id}`}>{faculty.name}</label>
-                          </div>
-                        ))}
-                      </div>
-                    )
-                  )}
                 </div>
                 
                 <p className="form-footer"><i>Following this submission, the CDHPM Executive will consider your collaboration request and get in touch with you about next steps.</i></p>

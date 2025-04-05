@@ -58,7 +58,7 @@
   content: "•";
   position: absolute;
   left: 0;
-  color: #007bff;
+  color: #005d7f;;
 }
 
 .contact-buttons {
@@ -144,7 +144,7 @@
 .btn-primary {
   display: inline-block;
   padding: 0.85rem 2rem;
-  background-color: #007bff;
+  background-color: #005d7f;;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -309,7 +309,7 @@
   padding: 0.5rem 0.8rem;
   margin: 0.5rem 0;
   background-color: transparent;
-  color: #007bff;
+  color: #005d7f;;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   font-size: 0.9rem;
@@ -357,7 +357,7 @@
 
 .selected-faculty-list li:before {
   content: "• ";
-  color: #007bff;
+  color: #005d7f;;
 }
 
 .faculty-selection {
@@ -398,7 +398,7 @@
 .faculty-option input[type="checkbox"] {
   width: 16px;
   height: 16px;
-  accent-color: #007bff;
+  accent-color: #005d7f;;
   cursor: pointer;
 }
 

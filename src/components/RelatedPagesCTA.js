@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const RelatedPagesCTA = ({ 
   title = "You may also be interested in exploring",
-  firstButtonText = "Explore Research",
+  firstButtonText = "Our Research",
   firstButtonLink = "/research",
   secondButtonText = "Work With Us",
   secondButtonLink = "/work-with-us",
