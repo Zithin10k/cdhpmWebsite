@@ -431,7 +431,7 @@ const About = () => {
         mainText="Who we are"
         subText="The Centre for Digital Health and Precision Medicine
 is a partnership between three globally renowned institutions."
-        height="500px"
+        height="400px"
         overlayColor="rgba(0, 0, 0, 0.4)"
       />
       

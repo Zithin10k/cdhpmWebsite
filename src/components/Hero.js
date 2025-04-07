@@ -22,10 +22,13 @@ const Hero = ({
       setWindowWidth(window.innerWidth);
       
       if (window.innerWidth <= 480) {
-        setResponsiveHeight('350px');
+        // For mobile, use a slightly smaller height
+        setResponsiveHeight(height !== '400px' ? '350px' : '300px');
       } else if (window.innerWidth <= 768) {
-        setResponsiveHeight('400px');
+        // For tablet, use the provided height or a default
+        setResponsiveHeight(height);
       } else {
+        // For desktop, use the provided height
         setResponsiveHeight(height);
       }
     };

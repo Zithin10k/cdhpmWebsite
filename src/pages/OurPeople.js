@@ -279,7 +279,7 @@ const OurPeople = () => {
             image="/assets/images/OurPeopleBanner.jpeg"
             mainText={peopleData.pageTitle}
             subText={peopleData.pageDescription}
-            height={windowWidth <= 768 ? '400px' : '600px'}
+            height={windowWidth <= 768 ? '400px' : '400px'}
           />
 
           {/* Sticky Navigation Bar */}

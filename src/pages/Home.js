@@ -82,7 +82,7 @@ const Home = () => {
         image="/assets/images/HomePageBanner.webp"
         mainText="Centre for Digital Health and Precision Medicine"
         subText="Transforming the future of healthcare through data and AI driven technology"
-        height="600px"
+        height="400px"
       />
       
       {/* Vision Section */}
