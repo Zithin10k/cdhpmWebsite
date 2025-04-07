@@ -277,6 +277,13 @@ const Research = () => {
               </div>
             </div>
             
+            {/* Areas of Focus Section */}
+            <div className="section-header focus-areas-header">
+              <h2 className="section-title">Areas of Focus</h2>
+              <p className="section-subtitle">The Centre will conduct high-quality research in any areas of clinical medicine where advanced analytics leading to digital health or precision medicine products can improve health or its delivery.</p>
+              <p className="section-subtitle">Key areas of focus for the Centre include:</p>
+            </div>
+            
             {/* Topics Showcase - Grid layout for better organization */}
             <div className="topics-showcase">
               <div className="topics-grid">
